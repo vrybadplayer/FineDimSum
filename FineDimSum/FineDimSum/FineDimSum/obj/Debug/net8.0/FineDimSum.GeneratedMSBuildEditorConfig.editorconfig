@@ -1,0 +1,229 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FineDimSum
+build_property.RootNamespace = FineDimSum
+build_property.ProjectDir = C:\VS Code\FineDimSum\FineDimSum\FineDimSum\FineDimSum\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\VS Code\FineDimSum\FineDimSum\FineDimSum\FineDimSum
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Account/Referral.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWZlcnJhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Account/ResendVerification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNlbmRWZXJpZmljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmAdmin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQWRtaW5cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmAdmin/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQWRtaW5cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmCategory/CategoryManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQ2F0ZWdvcnlcQ2F0ZWdvcnlNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmCategory/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmCategory/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQ2F0ZWdvcnlcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmCategory/_CategoryManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtQ2F0ZWdvcnlcX0NhdGVnb3J5TWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmDashboard/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtRGFzaGJvYXJkXERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmDashboard/_Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtRGFzaGJvYXJkXF9EYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmMember/CreateMember.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtTWVtYmVyXENyZWF0ZU1lbWJlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmMember/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtTWVtYmVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmMember/MemberDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtTWVtYmVyXE1lbWJlckRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmOrder/OrderHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtT3JkZXJcT3JkZXJIaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmOrder/OrderHistoryDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtT3JkZXJcT3JkZXJIaXN0b3J5RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmOrder/OrderItemList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtT3JkZXJcT3JkZXJJdGVtTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmOrder/OrderManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtT3JkZXJcT3JkZXJNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmOrder/OrderTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtT3JkZXJcT3JkZXJUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmProduct/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtUHJvZHVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmProduct/ProductManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtUHJvZHVjdFxQcm9kdWN0TWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmProduct/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtUHJvZHVjdFxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmProduct/_ProductManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtUHJvZHVjdFxfUHJvZHVjdE1hbmFnZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmProfile/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtUHJvZmlsZVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmTable/Insert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtVGFibGVcSW5zZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmTable/TableManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtVGFibGVcVGFibGVNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmTable/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtVGFibGVcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/AdmTable/_TableManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtVGFibGVcX1RhYmxlTWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CommonElement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbW9uRWxlbWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustCart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdENhcnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustCart/_CartItemList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdENhcnRcX0NhcnRJdGVtTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustOrder/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdE9yZGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustOrder/PastOrderDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdE9yZGVyXFBhc3RPcmRlckRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustOrder/PastOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdE9yZGVyXFBhc3RPcmRlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustOrder/_PastOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdE9yZGVyXF9QYXN0T3JkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustProduct/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdFByb2R1Y3RcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustProduct/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdFByb2R1Y3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustProduct/_IndexA.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdFByb2R1Y3RcX0luZGV4QS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/CustProfile/CusProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdFByb2ZpbGVcQ3VzUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Error/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Shared/_CheckBoxList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGVja0JveExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Shared/_OrderItemList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9PcmRlckl0ZW1MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/Shared/_RadioButtonList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SYWRpb0J1dHRvbkxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/VS Code/FineDimSum/FineDimSum/FineDimSum/FineDimSum/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
