@@ -1,0 +1,257 @@
+﻿@model CusProfileVM
+
+@section head {
+    <link rel="stylesheet" href="/css/member.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Member Profile";
+}
+  
+
+    <div class=" container mt-4">
+
+        <h2>Member Profile</h2>
+
+        <hr />
+
+<form method="post" asp-action="Update" asp-controller="CustProfile">
+    <div class="mb-3">
+        <label class="form-label">Username:</label>
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="FieldName" value="Username" />
+
+        <input type="text" name="FieldValue" class="form-control" value="@Model.Username" />
+        <button type="submit" class="gradient-button mt-2">Save Changes</button>
+        
+    </div>
+</form>
+
+<form method="post" asp-action="Update" asp-controller="CustProfile">
+    <div class="mb-3">
+        <label class="form-label">Email:</label>
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="FieldName" value="Email" />
+
+        <input type="email" name="FieldValue" class="form-control" value="@Model.Email"/>
+
+            <button type="submit" class="gradient-button mt-2">Save Changes</button>
+        
+    </div>
+</form>
+
+<form method="post" asp-action="Update" asp-controller="CustProfile">
+    <div class="mb-3">
+        <label class="form-label">Phone Number:</label>
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="FieldName" value="PhoneNumber" />
+        <input type="text" name="FieldValue" class="form-control" value="@Model.PhoneNumber" pattern="\d{3}-\d{7,8}" title="Phone number must be numeric and 8-15 digits long."/>
+
+        <button type="submit" class="gradient-button mt-2">Save Changes</button>
+        
+    </div>
+</form>
+
+<form method="post" asp-action="Update" asp-controller="CustProfile">
+    <div class="mb-3">
+        <label class="form-label">Gender</label>
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="FieldName" value="Gender" />
+        @if (Model.IsEditable)
+        {
+            @Html.DropDownList(
+                     "FieldValue",
+                     new SelectList(new[] { "M", "F" }, Model.Gender),
+                     htmlAttributes: new { @class = "form-select" }
+                     )
+            <button type="submit" class="gradient-button mt-2">Save Changes</button>
+        }
+        else
+        {
+            <input type="text" class="form-control" value="@Model.Gender" readonly />
+        }
+    </div>
+</form>
+
+<div class="form-group">
+            <label class="form-label">Points earned </label>
+            <input type="text" class="form-control" value="@Model.Points" readonly />        
+</div>
+
+<br />
+<div class="form-group">
+    <label>Register Date</label>
+            <input type="text" class="form-control" value="@(Model.RegisterDate.HasValue ? Model.RegisterDate.Value.ToString("d") : "Not Available")"  readonly  />
+</div>
+<br />
+
+<div class="form-group">
+    <label>Status</label>
+    <input type="text" class="form-control" value="@Model.Status" readonly />
+</div>
+<br />
+
+        <div class="form-group">
+            <label>Invited By</label>
+            @if (Model.InvitedBy.HasValue && !string.IsNullOrEmpty(Model.InvitedByName))
+            {
+                <input type="text" class="form-control" value="@Model.InvitedByName (ID: @Model.InvitedBy)" readonly />
+            }
+            else
+            {
+                <input type="text" class="form-control" value="Not invited" readonly />
+            }
+        </div>
+        <br />
+
+    <div class="container">
+        <label class="form-label">QR Code:</label>
+        @if (!string.IsNullOrEmpty(Model.QRCodeImage))
+        {
+            <!-- Display QR Code -->
+            <div id="imgBox" class="show-img">
+                <img src="@Model.QRCodeImage" alt="QR Code" id="qrImage" />
+            </div>
+        }
+        else
+        {
+            <!-- Show Generate Button -->
+            <div id="imgBox">
+                <img src="" id="qrImage" />
+            </div>
+            <input type="hidden" id="qrText" name="Id" value="@Model.Id" />
+            <button class="gradient-button" onclick="generateQR()">Generate QR Code</button>
+        }
+    </div>
+    <br />
+
+        <div class="form-group">
+        <form asp-action="SendQRCodeEmail" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-secondary">Send QR Code via Email</button>
+        </form>
+        </div>
+
+        <br>
+        <div class="form-group">
+            <label>Change Password</label>
+            <br />
+            <button class="gradient-button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</button>
+        </div>
+    </div>
+
+
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-action="ChangePassword" asp-controller="CustProfile" method="post">
+        @Html.AntiForgeryToken()
+                <div class="modal-header">
+            
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <div class="form-group">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <label>Old Password</label>
+                        <input type="password" asp-for="OldPassword" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <label>New Password</label>
+                        <input type="password" asp-for="NewPassword" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <label>Confirm New Password</label>
+                        <input type="password" asp-for="ConfirmNewPassword" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.ConfirmNewPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="gradient-button">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    .img-thumbnail {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    .modal .form-control {
+        margin-bottom: 15px;
+    }
+
+    #imgBox{
+        width:200px;
+        border-radius : 5px;
+        max-height : 0;
+        overflow: hidden;
+        transistion: max-height 1s;
+    }
+
+    #imgBox img{
+        width: 100%;
+        padding: 10px;
+    }
+    #imgBox.show-img{
+        max-height: 300px;
+        margin: 10px auto;
+            border: 1px solid;
+    }
+    </style>
+
+<script>
+    let imgBox = document.getElementById("imgBox");
+    let qrImage = document.getElementById("qrImage");
+    let qrText = document.getElementById("qrText");
+
+    function generateQR(){
+        const data = qrText.value;
+        const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+        
+        qrImage.src = qrUrl;
+        imgBox.classList.add("show-img");
+        
+        // Save the QR Code URL and image to the server
+        $.post('/CustProfile/SaveQRCode', { id: data, qrUrl: qrUrl }, function(response) {
+            if (response.success) {
+                alert("QR Code generated and saved successfully.");
+                location.reload(); // Reload to hide the Generate button
+            } else {
+                alert("Failed to save QR Code. Try again.");
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        // Handle modal events
+        $('#changePasswordModal').on('show.bs.modal', function () {
+            console.log("Password modal is now visible.");
+        });
+
+
+    });
+</script>

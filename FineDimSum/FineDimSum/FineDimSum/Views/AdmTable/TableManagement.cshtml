@@ -1,0 +1,69 @@
+﻿@{
+    string[] fields = { "Id", "TableNo", "Status" };
+}
+
+@section head {
+    <link rel="stylesheet" href="/css/tableManagement.css" asp-append-version="true" />
+}
+@{
+    ViewBag.Title = "Fine Dim Sum | Table Management";
+}
+<div class="container my-4">
+    <div>
+        <div class="header">
+            <div class="title">Table Management</div>
+            <div class="info-num">(@ViewBag.TotalTables) Table(s)</div>
+        </div>
+        <div class="underline mb-3"></div>
+    </div>
+
+    <form 
+        class="row g-3 mb-3" 
+        id="table-form"
+        data-ajax="true"
+        data-ajax-update="#table-container"
+        id="table-form">
+
+        <div class="col-md-3">
+            <input type="search" 
+                   class="form-control" 
+                   name="search" 
+                   value="@ViewBag.Search" 
+                   placeholder="Search TableNo" />
+        </div>
+        <div class="col-md-2">
+            <select name="status" class="form-select">
+                <option value="">- All Status -</option>
+                <option value="Available" selected="@(ViewBag.Status == "Available")">Available</option>
+                <option value="In-Use" selected="@(ViewBag.Status == "In-Use")">In-Use</option>
+                <option value="Unavailable" selected="@(ViewBag.Status == "Unavailable")">Unavailable</option>
+            </select>
+        </div>
+        <div class="col-md-2 d-flex justify-content-end">
+            <button type="submit" class="gradient-button me-2">Search</button>
+            <button type="reset" class="btn btn-secondary reset">Reset</button>
+        </div>
+        <img src="/images/loader.gif" id="loader" style="display: none; width: 50px;" />
+    </form>
+
+    <div id="table-container">
+        <partial name="_TableManagement" />
+    </div>
+</div>
+
+@section foot {
+    <script>
+        let timer = null;
+
+        // Trigger the form submission when typing in the search input
+        $('input[name="search"]').on('input', e => {
+            clearTimeout(timer);
+            timer = setTimeout(() => $(e.target.form).submit(), 500); // 500ms delay
+        });
+
+        // Trigger the form submission immediately when selecting a status in the dropdown
+        $('select[name="status"]').on('change', e => {
+            $(e.target.form).submit(); // Submit the form immediately
+        });
+    </script>
+}

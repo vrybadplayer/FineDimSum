@@ -1,0 +1,147 @@
+﻿@model AdminProfileVM
+
+@section head {
+    <link rel="stylesheet" href="/css/member.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Admin Profile";
+}
+
+
+<div class="container mt-4">
+    <h2>Admin Profile</h2>
+    <hr />
+
+    <div class="row">
+        <!-- Profile Picture -->
+        <div class="form-group">
+            <img src="@Url.Content($"~/images/Profile/{Model.Image}")" class="img-thumbnail mb-3" alt="Profile Picture" />
+            <form asp-action="ChangeProfilePicture" asp-controller="AdmProfile" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <div class="mb-3">
+                    <label class="form-label">Upload New Profile Picture:</label>
+                    <input type="file" name="ProfilePicture" class="form-control" accept=".jpg, .jpeg, .png" />
+                </div>
+                <button type="submit" class="gradient-button mt-2">Change Profile Picture</button>
+            </form>
+        </div>
+
+        <br />
+
+        <!-- Profile Details -->
+        <div class="form-group">
+            <form asp-action="AdminEdit" asp-controller="AdmProfile" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="fieldName" value="Username" />
+                <label>Username</label>
+                
+                    <input type="text" name="fieldValue" class="form-control" value="@Model.Username" />
+                    <button type="submit" class="gradient-button ml-2">Save Changes</button>
+                
+            </form>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <form asp-action="AdminEdit" asp-controller="AdmProfile" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="fieldName" value="Email" />
+                <label>Email</label>
+                
+                    <input type="email" name="fieldValue" class="form-control" value="@Model.Email" />
+                    <button type="submit" class="gradient-button ml-2">Save Changes</button>
+                
+            </form>
+        </div>
+        <br />
+
+            <div class="form-group">
+                <label>Role</label>
+                <input type="text" class="form-control" value="@Model.Role" readonly />
+            </div>
+        <br />
+
+            <div class="form-group">
+                <label>Status</label>
+                <input type="text" class="form-control" value="@Model.Status" readonly />
+            </div>
+        <br />
+
+            <div class="form-group">
+                <label>Change Password</label>
+                <br />
+            <br />
+            <button class="gradient-button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</button>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-action="ChangePassword" asp-controller="AdmProfile" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                    
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <div class="form-group">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <label>Old Password</label>
+                        <input type="password" asp-for="OldPassword" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <label>New Password</label>
+                        <input type="password" asp-for="NewPassword" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <label>Confirm New Password</label>
+                        <input type="password" asp-for="ConfirmNewPassword" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.ConfirmNewPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="gradient-button">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .img-thumbnail {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    .modal .form-control {
+        margin-bottom: 15px;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        // Handle modal events
+        $('#changePasswordModal').on('show.bs.modal', function () {
+            console.log("Password modal is now visible.");
+        });
+
+        
+    });
+</script>

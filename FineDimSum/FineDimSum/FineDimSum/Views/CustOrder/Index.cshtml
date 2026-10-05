@@ -1,0 +1,278 @@
+﻿@model FineDimSum.Models.OrderDetailsViewModel
+
+
+@section head {
+    <link rel="stylesheet" href="/css/custPastOrders.css" asp-append-version="true" />
+}
+
+@{
+    ViewBag.Title = "Fine Dim Sum | Current Order";
+}
+
+<div class="container my-4">
+    <div class="header">
+        <div class="title">Current Order Details</div>
+        <div class="info-num">(@Model.Order.OrderItems.Count()) Item(s)</div>
+    </div>
+    <div class="underline mb-2"></div>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <p><strong>Order ID: @Model.Order.Id</strong></p>
+            <p><strong>Order Date: @Model.Order.CreatedDateTime.ToString("dd/MM/yyyy")</strong></p>
+        </div>
+        <div class="col-md-6 text-md-end"></div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-Light">
+                <tr class="grey">
+                    <th scope="col">Product Details</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-center">Unit Price (RM)</th>
+                    <th scope="col" class="text-center">Final Price (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr style="font-size:18px">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/images/Order/@item.Image" alt="@item.ProductName" class="me-3 m-2"
+                                     style="width: 130px; height: 130px; border-radius: 15px; background-color: rgba(0, 0, 0, 0.05);">
+                                <div>
+                                    <strong>@item.ProductName</strong>
+                                    <p class="mb-1">@item.VariationOptionName</p>
+                                    <p class="text-muted mb-0">Remark: <small>@item.Remark</small></p>
+                                    <p class="text-muted mb-0">Status: <small>@item.Status</small></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">@item.Quantity</td>
+                        <td class="text-center">@item.UnitPrice.ToString("F2")</td>
+                        <td class="text-center">@((item.Quantity * item.UnitPrice).ToString("F2"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-4">
+    
+        <div class="col-md-6">
+            <!-- Points Discount and Payment Section -->
+            @if (Context.Session.GetString("AdmAddOrder") != "true")
+            {
+
+
+            <div class="card">
+                <div class="card-body p-4">
+                    <form id="payment-form" method="post" action="/CustOrder/ConfirmPayment">
+
+                        <input type="hidden" name="orderId" value="@Model.Order.Id" />
+                        @if (Model.IsMember)
+                        {
+                                <div class="d-flex align-items-center">
+                                    <h5 class="card-title border-bottom pb-2 mb-3 d-flex align-items-center">
+                                        <strong>Points Discount</strong>
+                                        <img src="/images/Icon/info.png" alt="Info Icon" class="ms-2 info-icon" data-bs-toggle="tooltip"
+                                             data-bs-placement="top" title="Points only apply with a minimum subtotal of RM50.
+Minimum points usage is 100 points (e.g., 100 points = RM1 discount).">
+                                    </h5>
+                                </div>
+                        <p class="card-text">
+                                    <strong class="grey mb-3">Available Points:</strong> <strong> <span id="available-points">@Model.MemberPoints </span> </strong>
+                        </p>
+                            <div class="d-flex align-items-center mb-3">
+                                <label for="pointsUsed" class="form-label me-3 mb-0 grey"><strong>Enter Points: </strong></label>
+                                <input type="number" name="pointsUsed" id="pointsUsed" class="form-control w-auto"
+                                       min="100" max="@Model.MemberPoints" />
+                            </div>
+                        <!-- Payment Method Section -->
+                        }
+                        <h5 class="card-title border-bottom pb-2 mb-3"><strong>Payment Method</strong></h5>
+                 
+                        <input type="hidden" name="orderId" value="@Model.Order.Id" />
+                        <div class="d-flex align-items-center mb-3">
+                            <label for="payment-method" class="form-label me-3 mb-0 grey"><strong>Method:</strong></label>
+                            <select name="paymentMethod" id="payment-method" class="form-select w-auto" required>
+                                <option value="" disabled selected>Select Payment Method</option>
+                                <option value="Online">Online Payment</option>
+                                <option value="Counter">Pay at Counter</option>
+                            </select>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Subtotal Section -->
+        <div class="col-md-6">
+            <ul class="list-group" style="border: 1px solid gainsboro !important">
+                <li class="list-group-item d-flex justify-content-between pt-3 pb-3">
+                    <span class="fs-6 grey"><strong>Subtotal (RM)</strong></span>
+                    <strong>@Model.Order.Subtotal.ToString("F2")</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between pb-3">
+                    <span class="fs-6 grey"><strong>Tax (RM)</strong></span>
+                    <strong>@Model.Order.SST.ToString("F2")</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between pb-3">
+                    <span class="fs-6 grey"><strong>Service Charge (RM)</strong></span>
+                    <strong>@Model.Order.ServiceCharge.ToString("F2")</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between pb-3">
+                    <span class="fs-6 grey"><strong>Discount (RM)</strong></span>
+                    <strong>(-) <span id="discount-display">0.00</span></strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between pb-3">
+                    <span class="fs-6 grey"><strong>Total (RM)</strong></span>
+                    <strong><span id="total-display">@Model.Order.Total.ToString("F2")</span></strong>
+                </li>
+                @if (Model.IsMember)
+                {
+                    <li class="list-group-item d-flex justify-content-between pb-3">
+                        <span class="fs-6 grey" ><strong>Estimated Earn Points</strong></span>
+                        <strong><span id="earn-points-display">@(Math.Floor(Model.Order.Total * 10))</span></strong>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" id="pay-now" class="gradient-button" style="width: 150px; font-size:16px;">
+                Pay Now
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal">
+        <p>Do you confirm the payment method and point discount application?</p>
+        <div class="modal-buttons">
+            <button id="confirm-payment" class="btn btn-success">Confirm</button>
+            <button id="cancel-payment" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+
+    <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
+</div>
+
+<script>
+            document.addEventListener("DOMContentLoaded", function () {
+        // Select elements
+        const pointsInput = document.getElementById("pointsUsed");
+        const discountDisplay = document.getElementById("discount-display");
+        const totalDisplay = document.getElementById("total-display");
+        const availablePointsDisplay = document.getElementById("available-points");
+        const earnPointsDisplay = document.getElementById("earn-points-display");
+
+        // Get initial values from Razor model
+        const subtotal = parseFloat("@Model.Order.Subtotal");
+        const sst = parseFloat("@Model.Order.SST");
+        const serviceCharge = parseFloat("@Model.Order.ServiceCharge");
+        const initialAvailablePoints = parseInt("@Model.MemberPoints");
+
+        // Calculate total before discount
+        const totalBeforeDiscount = subtotal + sst + serviceCharge;
+
+        if (pointsInput) {
+            pointsInput.addEventListener("input", function () {
+                const inputPoints = parseInt(this.value) || 0;
+
+                // Calculate max points that can be applied
+                const maxPoints = Math.floor(totalBeforeDiscount * 100); // Total in smallest unit
+                const appliedPoints = Math.min(inputPoints, maxPoints, initialAvailablePoints); // Limit to max allowed points and available points
+
+                // Enforce max dynamically
+                if (inputPoints > appliedPoints) {
+                    this.value = appliedPoints; // Set input value to the allowed max
+                }
+
+                // Calculate discount and total after discount
+                const discount = (appliedPoints / 100).toFixed(2); // Convert points to RM
+                const totalAfterDiscount = Math.max(0, totalBeforeDiscount - discount).toFixed(2); // Ensure non-negative total
+
+                // Update UI for discount and total
+                discountDisplay.textContent = discount > totalBeforeDiscount ? totalBeforeDiscount.toFixed(2) : discount;
+                totalDisplay.textContent = discount >= totalBeforeDiscount ? "0.00" : totalAfterDiscount;
+
+                // Update available points dynamically
+                const remainingPoints = initialAvailablePoints - appliedPoints;
+                availablePointsDisplay.textContent = remainingPoints >= 0 ? remainingPoints : "0";
+
+                // Update earned points dynamically
+                if (earnPointsDisplay) {
+                    const earnPoints = Math.max(0, Math.floor(totalAfterDiscount * 10));
+                    earnPointsDisplay.textContent = earnPoints;
+                }
+            });
+
+            // Set initial max attribute dynamically
+            const maxPoints = Math.min(Math.floor(totalBeforeDiscount * 100), initialAvailablePoints);
+            pointsInput.max = maxPoints; // Set max attribute
+        }
+
+        // Show the confirmation modal
+        const payNowButton = document.getElementById("pay-now");
+        if (payNowButton) {
+            payNowButton.addEventListener("click", function () {
+                const modal = document.getElementById("confirmation-modal");
+                const overlay = document.getElementById("overlay");
+
+                const paymentMethod = document.getElementById("payment-method").value;
+                if (!paymentMethod) {
+                    alert("Please select a payment method.");
+                    return;
+                }
+
+                if (modal && overlay) {
+                    modal.style.display = "block";
+                    overlay.style.display = "block";
+                } else {
+                    console.error("Modal or overlay elements are missing.");
+                }
+            });
+        }
+
+        // Hide the confirmation modal
+        const cancelPaymentButton = document.getElementById("cancel-payment");
+        if (cancelPaymentButton) {
+            cancelPaymentButton.addEventListener("click", function () {
+                const modal = document.getElementById("confirmation-modal");
+                const overlay = document.getElementById("overlay");
+                if (modal && overlay) {
+                    modal.style.display = "none";
+                    overlay.style.display = "none";
+                } else {
+                    console.error("Modal or overlay elements are missing.");
+                }
+            });
+        }
+
+        // Confirm and submit the payment
+        const confirmPaymentButton = document.getElementById("confirm-payment");
+        if (confirmPaymentButton) {
+            confirmPaymentButton.addEventListener("click", function () {
+                const paymentMethod = document.getElementById("payment-method").value;
+                if (!paymentMethod) {
+                    alert("Please select a payment method.");
+                    return;
+                }
+
+                const paymentForm = document.getElementById("payment-form");
+                if (paymentForm) {
+                    paymentForm.submit();
+                } else {
+                    console.error("Payment form not found!");
+                }
+            });
+        }
+    });
+
+</script>

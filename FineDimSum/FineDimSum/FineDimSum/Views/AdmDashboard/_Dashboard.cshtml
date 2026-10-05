@@ -1,0 +1,78 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<dynamic>
+
+@{
+    string[] fields = ["Product Id", "Image", "Product Name", "Category", "Quantity Sold", "Total Sales (RM)"];
+}
+
+@Html.Hidden("sort", "", new { form = "f" })
+@Html.Hidden("dir", "", new { form = "f" })
+
+<table class="table table-hover table-light mt-3">
+    <thead class="table-head">
+        <tr>
+            @foreach (var f in fields)
+            {
+                if (f.Equals("Image"))
+                {
+                    <th>@f</th>
+                    continue;
+                }
+
+                string d = "asc";
+                string c = "";
+
+                if (f == ViewBag.Sort)
+                {
+                    d = ViewBag.Dir == "des" ? "asc" : "des";
+                    c = ViewBag.Dir;
+                }
+
+                <th>
+                    <a data-ajax="true"
+                       data-ajax-update="#sales-records"
+                       data-ajax-loading="#loader"
+                       href="?product=@ViewBag.Name&category=@ViewBag.Category&startDate=@ViewBag.StartDate&endDate=@ViewBag.EndDate&sort=@f&dir=@d" class="@c">@f</a>
+                </th>
+            }
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Id</td>
+            <td>
+                <img class="product-img" src="/images/AdmProduct/Product/@p.Image" alt="@p.Name" />
+            </td>
+            <td>@p.Name</td>
+            <td>@p.Category</td>
+            <td>@p.QuantitySold</td>
+            <td>@p.TotalSales</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@{
+    var options = PagedListRenderOptions.ClassicPlusFirstAndLast;
+    options.LinkToFirstPageFormat = "First";
+    options.LinkToLastPageFormat = "Last";
+    options.LinkToPreviousPageFormat = "Previous";
+    options.LinkToNextPageFormat = "Next";
+
+    var ajaxOptions = new AjaxOptions
+            {
+                HttpMethod = "get",
+                UpdateTargetId = "sales-records",
+                LoadingElementId = "#loader",
+            };
+}
+
+@Html.PagedListPager(
+        Model,
+                p => $"?product={ViewBag.Name}&category={ViewBag.Category}&startDate={ViewBag.StartDate}&endDate={ViewBag.EndDate}&sort={ViewBag.Sort}&dir={ViewBag.Dir}&page={p}",
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(options, ajaxOptions)
+    )

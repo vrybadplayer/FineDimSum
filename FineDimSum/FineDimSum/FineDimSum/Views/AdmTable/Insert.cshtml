@@ -1,0 +1,53 @@
+﻿@model TableVM
+
+@section head {
+    <link rel="stylesheet" href="/css/tableManagement.css" asp-append-version="true" />
+}
+@{
+    ViewBag.Title = "Fine Dim Sum | Add Table";
+}
+
+<div class="container mt-4">
+    <a href="/AdmTable/TableManagement" class="back text-decoration-none">
+        <i class="bi bi-arrow-left"></i> < Back
+    </a>
+    <div>
+        <div class="header mt-4">
+            <div class="title">Add New Table</div>
+        </div>
+        <div class="underline mb-3"></div>
+    </div>
+
+    <form asp-action="Insert" method="post" class="needs-validation" novalidate>
+        <!-- Validation Summary -->
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        <!-- Table Number Field -->
+        <div class="mb-3">
+            <label asp-for="TableNo" class="form-label fw-bold">Table Number</label>
+            <input asp-for="TableNo" class="form-control" placeholder="Enter Table Number" required />
+            <span asp-validation-for="TableNo" class="text-danger"></span>
+        </div>
+
+        <!-- Status Field -->
+        <div class="mb-3">
+            <label asp-for="Status" class="form-label fw-bold">Status</label>
+            <select asp-for="Status" class="form-select" required>
+                <option value="">-- Select Status --</option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-start gap-2">
+            <button type="submit" class="gradient-button">
+                <i class="bi bi-plus-circle"></i> Add Table
+            </button>
+            <button type="reset" class="btn btn-secondary reset">
+                <i class="bi bi-arrow-clockwise"></i> Reset
+            </button>
+        </div>
+    </form>
+</div>

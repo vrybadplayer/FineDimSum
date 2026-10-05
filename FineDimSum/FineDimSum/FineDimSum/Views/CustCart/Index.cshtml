@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FineDimSum.Models.CartItem>
+
+@section head {
+	<link rel="stylesheet" href="/css/custPastOrders.css" asp-append-version="true" />
+}
+@{
+	ViewBag.Title = "Fine Dim Sum | Cart";
+}
+
+<div class="container mb-5">
+	<div class="header">
+		<div class="title">Cart</div>
+		<div class="info-num">(@Model.Count()) Item  (s)</div>
+	</div>
+	<div class="underline mb-2"></div>
+
+	<div id="cart-container">
+		<partial name="_CartItemList" />
+	</div>
+</div>
+

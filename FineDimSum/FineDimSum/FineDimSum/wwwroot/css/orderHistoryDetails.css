@@ -1,0 +1,154 @@
+﻿/* The base of the webpage */
+
+h1.header {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    padding: 0px 0px 0px 0px;
+}
+
+
+label {
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+input {
+    border-radius: 30px;
+    border: solid 1px;
+    width: 100px;
+    height: 40px;
+    margin-bottom: 12px;
+    font-size: 12px;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header {
+    flex: 1;
+    text-align: center; 
+    font-size: 40px;
+}
+
+.form {
+    display: flex; 
+    align-items: center; 
+}
+
+span {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+#backBtn {
+    width: 150px;
+    height: 55px;
+    border-radius: 40px;
+    background-color: rgb(255 0 0 / 0.70);
+    border: none;
+    text-align:center;
+    padding-top: 15px;
+}
+
+button#cancelOrder {
+    width: 150px;
+    height: 55px;
+    border-radius: 40px;
+    background-color: rgb(255 0 0 / 0.70);
+    border: none;
+    text-align: center;
+}
+
+button#confirmBtn {
+    width: 150px;
+    height: 55px;
+    border-radius: 40px;
+    background-color: rgb(0 255 144);
+    border: none;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.addItem {
+    width: 150px;
+    height: 55px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #ff914d, #ffde59);
+    border: none;
+    text-align: center;
+}
+
+form#addItem {
+display: flex;
+justify-content: flex-end;
+margin-right:20px;
+}
+
+/* <table> styling */
+
+p {
+    display: flex;
+    justify-content: center;
+}
+
+th {
+    padding: 30px 0px 30px 0px;
+    width: 450px;
+    text-align:center;
+}
+
+td {
+    height: 100px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    margin: 10px 10px 10px 10px;
+}
+
+.cancelBtn {
+    width: 150px;
+    height: 55px;
+    border-radius: 40px;
+    background-color: rgb(255 0 0 / 0.70);
+    border: none;
+}
+
+select {
+    width: 150px;
+    height: 55px;
+    border-radius: 40px;
+    text-align: center; 
+    border: none;
+
+}
+
+textarea {
+    border-radius: 5px;
+    text-align:center;
+}
+
+img {
+    border:1px solid black;
+    width: 70px;
+    height: 70px
+}
+
+/*div Below*/
+
+div.middle {
+    display: flex;
+    justify-content: space-around;
+}

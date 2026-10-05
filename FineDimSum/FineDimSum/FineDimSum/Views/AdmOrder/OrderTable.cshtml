@@ -1,0 +1,97 @@
+﻿@model List<OrderTableVM>
+
+@section head {
+	<link rel="stylesheet" href="/css/orderTable.css" asp-append-version="true" />
+}
+
+
+@{
+	ViewBag.Title = "Order Table Page";
+}
+
+<div class="top">
+
+	<h1 class="header">Order Table</h1>
+
+	<form method="POST">
+		<label class="TableInput">Table: </label>
+		<input class="TableInput" name="tableNo" type="text" required />
+	</form>
+
+</div>
+
+<span>
+	@foreach (OrderTableVM vm in Model)
+	{
+		if (vm.Status == "In-Use")
+		{
+			<a class="@vm.Status" asp-controller="AdmOrder" asp-action="OrderManagement"
+			   asp-route-orderId="@vm.OrderID" asp-route-tableNo="@vm.TableNo">
+				<div class="@vm.Status">
+					<p id="orderLabel">Order ID</p>
+					<p id="orderId">@vm.OrderID</p>
+					<p id="table">Table No:</p>
+					<p id="tableNo">@vm.TableNo</p>
+					<p id="status">Status: @vm.Status</p>
+				</div>
+			</a>
+		} 
+		else if (vm.Status == "Available")
+		{
+			// Note to Winkong: Modify this line of code below to your controller to create order
+			// Note that it needs UserId
+			// Get Table No
+			// Create an Order record
+			// Change the status of Table
+			// RTA to OrderManagement
+			<a class="@vm.Status" href="/AdmOrder/CreateOrderForTable?tableNo=@vm.TableNo" onclick="return confirm('Are you sure you want to create a new order?');">
+				<div class="@vm.Status">
+					<p id="orderLabel">Order ID</p>
+					<p id="orderId">@vm.OrderID</p>
+					<p id="table">Table No:</p>
+					<p id="tableNo">@vm.TableNo</p>
+					<p id="status">Status: @vm.Status</p>
+				</div>
+			</a>
+		}
+	}
+</span>
+
+@* @section foot { *@
+
+@* 	<script> *@
+@* 		var links = document.querySelectorAll('.Available'); *@
+
+@* 		links.forEach(link => { *@
+@* 			link.addEventListener('click', function(event) { *@
+@* 				var userConfirmed = confirm('Are you sure you want to create a new order?'); *@
+@* 				if (!userConfirmed) { *@
+@* 					event.preventDefault(); *@
+@* 				} *@
+@* 			}); *@
+@* 		}); *@
+@* 	</script> *@
+@* } *@
+
+@* @section foot { *@
+
+@* 	<script> *@
+@* 		document.addEventListener('DOMContentLoaded', function () { *@
+@* 			// Select all links with the class "Available" *@
+@* 			var links = document.querySelectorAll('.Available'); *@
+
+@* 			// Attach click event listeners to the links *@
+@* 			links.forEach(link => { *@
+@* 				link.addEventListener('click', function (event) { *@
+@* 					// Display the confirmation dialog *@
+@* 					var userConfirmed = confirm('Are you sure you want to create a new order?'); *@
+
+@* 					// If the user does not confirm, prevent the default action *@
+@* 					if (!userConfirmed) { *@
+@* 						event.preventDefault(); *@
+@* 					} *@
+@* 				}); *@
+@* 			}); *@
+@* 		}); *@
+@* 	</script> *@
+@* } *@

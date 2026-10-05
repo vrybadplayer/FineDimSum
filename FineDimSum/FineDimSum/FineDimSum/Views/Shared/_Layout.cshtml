@@ -1,0 +1,232 @@
+﻿@inject DB db
+@using Microsoft.AspNetCore.Http
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link rel="icon" type="image/png" href="/images/Icon/circleLogo.png" />
+    <link rel="shortcut icon" href="/images/Icon/circleLogo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/css/pager.css" asp-append-version="true">
+    <link rel="stylesheet" href="/css/base.css" asp-append-version="true">
+    <link rel="stylesheet" href="/css/app.css" asp-append-version="true">
+    <link rel="stylesheet" href="/css/header.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    @RenderSection("head", false)
+</head>
+<body>
+    <div class="info">@Html.Raw(TempData["Info"])</div>
+    <div class="error">@Html.Raw(TempData["Error"])</div>
+    <div class="success">@Html.Raw(TempData["Success"])</div>
+
+    <div class="navbar-sidebar">
+        <header>
+            @* Navbar *@
+            <nav class="navbar">
+                @{
+                    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+                }
+
+                <div class="left-section">
+                    @if (User.IsInRole("Root") ||
+                    User.IsInRole("Manager") ||
+                    User.IsInRole("Staff"))
+                    {
+                        <div id="menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    }
+
+                    @* Logo *@
+                    <div class="logo">
+                        @if (!User.Identity!.IsAuthenticated || User.IsInRole("Member") || Context.Session.GetString("AdmAddOrder") == "true")
+                        {
+                            <a href="/CustProduct/Index">
+                                <img src="/images/Icon/logo.jpg" alt="Logo" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="/images/Icon/logo.jpg" alt="Logo" />
+                        }
+                    </div>
+                    @if (controller != "Account")
+                    {
+                        string tableNo = Context.Session.GetString("TableNo") ?? "Not Set";
+
+                        @if (User.IsInRole("Member") || !User.Identity!.IsAuthenticated)
+                        {
+                            <div class="table-no">Table No. @tableNo</div>
+                        }
+                    }
+                </div>
+
+                @if (controller != "Account")
+                {
+                    <div class="right-section">
+                        @if (!User.Identity!.IsAuthenticated || User.IsInRole("Member") || Context.Session.GetString("AdmAddOrder") == "true")
+                        {
+                            @* Cart. *@            
+                                    <div class="cart">
+                                <a href="/CustCart/Index">
+                                    <img src="/images/Icon/cart.png" alt="Cart" />
+                                </a>
+                            </div>
+                        }
+
+                        @* User Section *@
+                        <div class="user-section">
+                            <div class="user-left-section">
+                                @{
+                                    var role = User.IsInRole("Root") ? "Root" :
+                                    User.IsInRole("Manager") ? "Manager" :
+                                    User.IsInRole("Staff") ? "Staff" :
+                                    User.IsInRole("Chef") ? "Chef" :
+                                    User.IsInRole("Member") ? "Member" : "Guest";
+
+                                    var photoURL = role switch
+                                    {
+                                        "Root" => db.Roots.FirstOrDefault(r => r.Email == User.Identity!.Name)?.Image ?? "",
+                                        "Manager" => db.Managers.FirstOrDefault(m => m.Email == User.Identity!.Name)?.Image ?? "",
+                                        "Staff" => db.Staffs.FirstOrDefault(s => s.Email == User.Identity!.Name)?.Image ?? "",
+                                        "Chef" => db.Chefs.FirstOrDefault(c => c.Email == User.Identity!.Name)?.Image ?? "",
+                                        "Member" => "/images/Icon/member.png",
+                                        _ => "/images/Icon/guest.png"
+                                    };
+
+                                    if ((User.IsInRole("Root") ||
+                                    User.IsInRole("Manager") ||
+                                    User.IsInRole("Staff") ||
+                                    User.IsInRole("Chef")) && string.IsNullOrWhiteSpace(photoURL))
+                                    {
+                                        photoURL = "/images/Icon/admin.png";
+                                    }
+                                }
+
+                                @* Profile Picture *@
+                                <div class="profile-pic">
+                                    @{
+                                        if ((User.IsInRole("Root") ||
+                                        User.IsInRole("Manager") ||
+                                        User.IsInRole("Staff") ||
+                                        User.IsInRole("Chef")))
+                                        {
+                                            <img src="/images/Profile/@photoURL" />
+                                        }
+                                        else
+                                        {
+                                            <img src="/images/Icon/member.png" />
+                                        }
+                                    }
+                                </div>
+                                @* Username *@
+                                <div class="username">
+                                    @(User.Identity!.IsAuthenticated ? @Context.Session.GetString("Username") : "Guest")
+                                </div>
+                            </div>
+
+                            @* Dropdown button *@
+                            <img id="dropdown-arrow" src="/images/Icon/arrow.png" />
+
+                            @* Dropdown *@
+                            <div class="user-dropdown">
+                                @if (Context.Session.GetString("AdmAddOrder") == "true")
+                                {
+                                    @if (Context.Session.GetString("OrderId") is string orderId && !string.IsNullOrEmpty(orderId))
+                                    {
+                                        <a href="/CustOrder/Index?orderId=@orderId">View Current Order</a>
+                                    }
+                                    <a href="/AdmOrder/GoBack">Go Back</a>
+                                }
+                                else if (User.Identity!.IsAuthenticated)
+                                {
+                                    @if (User.IsInRole("Member"))
+                                    {
+                                        <a href="/CustProfile/CusProfile?id=@Context.Session.GetString("UserId")">My Profile</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/AdmProfile/Profile?id=@Context.Session.GetString("UserId")">My Profile</a>
+                                    }
+
+                                    @if (User.IsInRole("Member"))
+                                    {
+                                        @if (Context.Session.GetString("OrderId") is string orderId && !string.IsNullOrEmpty(orderId))
+                                        {
+                                            <a href="/CustOrder/Index?orderId=@orderId">View Current Order</a>
+                                        }
+                                        <a href="/CustOrder/PastOrders">Order History</a>
+                                    }
+                                    <a id="logout" href="/Account/Logout">Logout</a>
+                                }
+                                else
+                                {
+                                    <a href="/Account/Login">Login / Register</a>
+                                    @if (Context.Session.GetString("OrderId") is string orderId && !string.IsNullOrEmpty(orderId))
+                                    {
+                                        <a href="/CustOrder/Index?orderId=@orderId">View Current Order</a>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </nav>
+        </header>
+
+        @if (User.IsInRole("Root") ||
+        User.IsInRole("Manager") ||
+        User.IsInRole("Staff"))
+        {
+            @* Admin Sidebar *@
+            <div class="admin-sidebar">
+                @if (User.IsInRole("Root") || User.IsInRole("Manager"))
+                {
+                    <a href="/AdmDashboard/Dashboard">Dashboard</a>
+                    <a href="/AdmAdmin/Index">Admin Management</a>
+                    <a href="/AdmMember/Index">Member Management</a>
+                    <a href="/AdmTable/TableManagement">Table Management</a>
+                    <a href="/AdmCategory/CategoryManagement">Category Management</a>
+                    <a href="/AdmProduct/ProductManagement">Product Management</a>
+                }
+                <a href="/AdmOrder/OrderManagement">Order Management</a>
+                <a href="/AdmOrder/OrderItemList">Order Item Management</a>
+                <a href="/AdmOrder/OrderHistory">Order History</a>
+            </div>
+        }
+
+    </div>
+
+    @* Main content *@
+    <main>
+        @RenderBody()
+    </main>
+
+    @* Footer *@
+    <footer>
+        &copy; @DateTime.Today.Year Fine Dim Sum. All Right Reserved.
+    </footer>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/app.js" asp-append-version="true"></script>
+    <script src="/js/header.js" asp-append-version="true"></script>
+
+
+    @RenderSection("foot", false)
+</body>
+</html>

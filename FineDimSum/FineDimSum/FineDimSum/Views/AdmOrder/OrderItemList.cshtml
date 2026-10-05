@@ -1,0 +1,55 @@
+﻿
+
+@section head {
+	<link rel="stylesheet" href="/css/orderItemList.css" asp-append-version="true" />
+}
+
+@{
+	ViewBag.Title = "Order Item List Page";
+}
+
+<div id="top">
+	<h1>Order Item List</h1>
+	<h4>@ViewBag.CurrentDateTime</h4>
+</div>
+<hr />
+
+<div id="status">
+	<form data-ajax="true" data-ajax-update="#target" data-ajax-loading="#loader" id="postForm" asp-controller="AdmOrder" asp-action="OrderItemList" method="post">
+		<input type="hidden" name="orderStatus" id="hiddenPostData" value="Preparing" />
+		<button type="submit" class="statusBtn" onclick="submitPost(this)">
+			Preparing: @ViewBag.PreparingCount
+		</button>
+	</form>
+
+	<form data-ajax="true" data-ajax-update="#target" data-ajax-loading="#loader" id="postForm" asp-controller="AdmOrder" asp-action="OrderItemList" method="post">
+		<input type="hidden" name="orderStatus" id="hiddenPostData" value="Ready" />
+		<button type="submit" class="statusBtn" onclick="submitPost(this)">
+			Ready: @ViewBag.ReadyCount
+		</button>
+	</form>
+
+	<form data-ajax="true" data-ajax-update="#target" data-ajax-loading="#loader" id="postForm" asp-controller="AdmOrder" asp-action="OrderItemList" method="post">
+		<input type="hidden" name="orderStatus" id="hiddenPostData" value="Delivered" />
+		<button type="submit" class="statusBtn" onclick="submitPost(this)">
+			Delivered: @ViewBag.DeliveredCount
+		</button>
+	</form>
+</div>
+
+<hr />
+
+<div id="target">
+	<partial name="_OrderItemList" />
+</div>
+
+
+
+@section foot {
+	<script>
+		function submitForm(orderItemId) {
+			var form = document.getElementById('statusForm_' + orderItemId);
+			form.submit();
+		}
+	</script>
+}

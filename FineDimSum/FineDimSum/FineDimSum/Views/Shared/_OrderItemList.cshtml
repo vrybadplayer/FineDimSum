@@ -1,0 +1,66 @@
+﻿@model List<OrderItemListVM>
+
+
+@* Table *@
+
+<table>
+	<tr>
+		<th>Order Item Id</th>
+		<th>Item</th>
+		<th>Name</th>
+		<th>Options</th>
+		<th>Quantity</th>
+		<th>Status</th>
+		<th>Remarks</th>
+		<th>Table No.</th>
+	</tr>
+
+	<tr>
+		<td colspan="8" style="border-top: 1px solid black; height: auto; padding: 0px 0px 15px 0px;"></td>
+	</tr>
+
+	@* Start Loop *@
+	@foreach (OrderItemListVM vm in Model)
+	{
+		<tr>
+			<td>@vm.OrderItemId</td>
+			<td><img src="/images/Order/@vm.Image" /></td>
+			<td>@vm.ProductName</td>
+			<td>@vm.VariationOptionName</td>
+			<td>@vm.Quantity</td>
+			<td>
+				<form id="statusForm_@vm.OrderItemId" method="POST" asp-controller="AdmOrder" asp-action="OrderItemList">
+					<input type="hidden" name="orderStatus" value="@ViewBag.OrderStatus" />
+					<input type="hidden" name="orderItemId" value="@vm.OrderItemId" />
+					<input type="hidden" name="tableNo" value="@vm.TableNo" />
+					<select id="status_@vm.OrderItemId" name="selectedStatus" onchange="submitForm(@vm.OrderItemId)">
+						@if (ViewBag.OrderStatus == "Preparing")
+						{
+							<option value="Preparing" selected>Preparing</option>
+							<option value="Ready">Ready</option>
+						}
+						else if (ViewBag.OrderStatus == "Ready")
+						{
+							<option value="Preparing">Preparing</option>
+							<option value="Ready" selected>Ready</option>
+							<option value="Delivered">Delivered</option>
+						}
+						else
+						{
+							<option value="Ready">Ready</option>
+							<option value="Delivered" selected>Delivered</option>
+						}
+					</select>
+				</form>
+			</td>
+			<td>
+				<textarea readonly rows="2" cols="20">@vm.Remark</textarea>
+			</td>
+			<td>
+				@vm.TableNo
+			</td>
+		</tr>
+	}
+	@* End Loop *@
+
+</table>

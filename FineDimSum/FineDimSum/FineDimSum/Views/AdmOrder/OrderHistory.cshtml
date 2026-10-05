@@ -1,0 +1,65 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<OrderHistoryVM>
+
+@section head {
+	<link rel="stylesheet" href="/css/orderHistory.css" asp-append-version="true" />
+}
+
+@{
+	ViewBag.Title = "Order History Page";
+}
+
+@{
+	var options = PagedListRenderOptions.ClassicPlusFirstAndLast;
+	options.LinkToFirstPageFormat = "<<";
+	options.LinkToLastPageFormat = ">>";
+	options.LinkToPreviousPageFormat = "<";
+	options.LinkToNextPageFormat = ">";
+}
+
+<div class="top">
+
+	<h1 class="header">Order History</h1>
+
+	<form method="POST">
+		<label class="TableInput">Order Id: </label>
+		<input class="TableInput" name="orderId" type="text" />
+	</form>
+
+</div>
+
+@* Table *@
+<table>
+	<tr>
+		<th>Order Id</th>
+		<th>Date Time</th>
+		<th>Table No</th>
+		<th>Customer Id</th>
+	</tr>
+
+	<tr>
+		<td colspan="4" style="border-top: 1px solid black; height: auto; padding: 0px 0px 15px 0px;"></td>
+	</tr>
+
+	@* Start Loop *@
+
+	@foreach (OrderHistoryVM vm in Model)
+	{
+		<tr class="link" onclick="location.href='@Url.Action("OrderHistoryDetails", "AdmOrder", new { intOrderId = vm.OrderId })'">
+			<td>@vm.OrderId</td>
+			<td>@vm.DateTime</td>
+			<td>@vm.TableNo</td>
+			<td>@vm.CustomerId</td>
+		</tr>
+	}
+
+	@* End Loop *@
+
+</table>
+
+@Html.PagedListPager(
+	Model,
+	page => $"?page={page}",
+	options
+)

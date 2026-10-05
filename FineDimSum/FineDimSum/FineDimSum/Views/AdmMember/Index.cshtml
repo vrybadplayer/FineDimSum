@@ -1,0 +1,97 @@
+﻿@model IEnumerable<dynamic>
+
+@section head {
+    <link rel="stylesheet" href="/css/member.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Member List";
+
+    // Filters for dropdowns
+    var genders = new[] { "All", "M", "F" };
+    var statuses = new[] { "All", "Active", "Inactive", "Terminated" };
+}
+
+@{
+    ViewData["Title"] = "Member List";
+}
+
+<div class="container mt-5">
+    <h2>Member List</h2>
+    <br />  
+    <!-- Filter Form -->
+    <form method="get" asp-action="Index" class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="searchQuery" class="form-control" placeholder="Search by username or email" value="@ViewData["SearchQuery"]" />
+        </div>
+        <div class="col-md-3">
+            <select name="filterGender" class="form-select">
+                @foreach (var gender in genders)
+                {
+                    if (gender == (string)ViewData["FilterGender"])
+                    {
+                        <option value="@gender" selected="selected">@gender</option>
+                    }
+                    else
+                    {
+                        <option value="@gender">@gender</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="filterStatus" class="form-select">
+                @foreach (var status in statuses)
+                {
+                    if (status == (string)ViewData["FilterStatus"])
+                    {
+                        <option value="@status" selected="selected">@status</option>
+                    }
+                    else
+                    {
+                        <option value="@status">@status</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="gradient-button w-100">Filter</button>
+        </div>
+    </form>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Invited By</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in Model)
+            {
+                <tr>
+                    <th scope="row">@member.Id</th>
+                    <td>@member.Username</td>
+                    <td>@member.Email</td>
+                    <td>@member.Gender</td>
+                    <td>@member.PhoneNo</td>
+                    <td>@member.InvitedBy</td>
+                    <td>@member.Status</td>
+                    <td>
+                        <a asp-action="MemberDetails" asp-route-id="@member.Id" class="gradient-button btn-sm">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form asp-controller="AdmMember" asp-action="CreateMember" method="get">
+        <button type="submit" class="gradient-button">Create Member</button>
+    </form>
+</div>

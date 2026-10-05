@@ -1,0 +1,163 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<RestTable>
+
+<div class="mb-3">
+    <button class="gradient-button me-2" data-get="/AdmTable/Insert">
+        <i class="bi bi-plus-circle"></i> Add Table
+    </button>
+    <button type="submit" form="batchDeleteForm" class="red-button" id="batchDeleteButton">
+        <i class="bi bi-trash"></i> Batch Delete
+    </button>
+</div>
+<form id="batchDeleteForm" method="post" action="/AdmTable/BatchDelete">
+    <table class="table table-hover table-light align-middle">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">
+                    <input type="checkbox" id="selectAll" /> <!-- Checkbox for "Select All" -->
+                </th>
+                @foreach (var f in new[] { "Id", "TableNo", "Status" })
+                {
+                    string direction = ViewBag.Dir == "des" ? "asc" : "des";
+                    <th scope="col" class="text-center">
+                        <a class="text-decoration-none text-dark"
+                           data-ajax="true"
+                           data-ajax-update="#table-container"
+                           href="?search=@ViewBag.Search&status=@ViewBag.Status&sort=@f&dir=@direction">
+                            @f <i class="bi bi-arrow-down-up"></i>
+                        </a>
+                    </th>
+                }
+                <th class="text-center pe-4" scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">
+                        <strong>No table found.</strong>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var t in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="selectedTableIds" value="@t.Id" />
+                        </td>
+                        <td class="text-center">@t.Id</td>
+                        <td class="text-center">@t.TableNo</td>
+                        <td class="text-center">
+                            @if (t.Status == "Available")
+                            {
+                                <span class="status-size badge badge-available">Available</span>
+                            }
+                            else if (t.Status == "In-Use")
+                            {
+                                <span class="status-size badge badge-in-use">In-Use</span>
+                            }
+                            else if (t.Status == "Unavailable")
+                            {
+                                <span class="status-size badge badge-unavailable">Unavailable</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <!-- Edit Button -->
+                            <button class="icon-button" data-get="/AdmTable/Update?tableId=@t.Id" style="background-image: url('/images/Icon/editTable.png');"></button>
+
+                            <!-- Set Table Button -->
+                            <button class="icon-button" data-post="/AdmTable/SetTable?tableId=@t.Id" style="background-image: url('/images/Icon/setTable.png');"></button>
+
+                            <!-- View Button -->
+                            <button class="icon-button" data-post="/AdmTable/ViewCustomerSide?tableId=@t.Id" style="background-image: url('/images/Icon/viewTable.png');"></button>
+
+                            <!-- Delete Button -->
+                            <button class="icon-button delete-btn" formaction="/AdmTable/Delete" formmethod="post" name="tableId"
+                                    value="@t.Id" onclick="return confirm('Are you sure you want to delete this table?');"
+                                    style="background-image: url('/images/Icon/deleteBtn.png');"></button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</form>
+
+
+@{  
+    var options = PagedListRenderOptions.ClassicPlusFirstAndLast;
+    options.LinkToFirstPageFormat = "First";
+    options.LinkToLastPageFormat = "Last";
+    options.LinkToPreviousPageFormat = "Previous";
+    options.LinkToNextPageFormat = "Next";
+
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "get",
+        UpdateTargetId = "table-container", 
+        LoadingElementId = "#loader",
+    };
+}
+
+@Html.PagedListPager(
+    Model,
+    p => $"?search={ViewBag.Search}&status={ViewBag.Status}&sort={ViewBag.Sort}&dir={ViewBag.Dir}&page={p}",
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(options, ajaxOptions)
+)
+
+<script>
+                document.addEventListener("DOMContentLoaded", () => {
+                const batchDeleteButton = document.getElementById("batchDeleteButton");
+                const batchDeleteForm = document.getElementById("batchDeleteForm");
+
+                batchDeleteButton.addEventListener("click", (event) => {
+                    // Prevent the default form submission
+                    event.preventDefault();
+
+                    // Display confirmation dialog
+                    const confirmed = confirm("Are you sure you want to delete the selected tables?");
+                    if (confirmed) {
+                        // Submit the form if the user confirms
+                        batchDeleteForm.submit();
+                    }
+                });
+            });
+
+    // JavaScript to handle "Select All" functionality
+    document.getElementById("selectAll").addEventListener("change", function () {
+        const checkboxes = document.querySelectorAll('input[name="selectedTableIds"]');
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+    });
+
+    $(document).ready(function () {
+    $(document).on("click", "[data-confirm]", function (e) {
+        e.preventDefault(); // Prevent default button or link behavior
+        
+        const message = $(this).data("confirm"); // Get the confirmation message
+        const postUrl = $(this).data("post");    // Get the POST URL
+
+        if (!message || !postUrl) {
+            console.error("Missing data-confirm or data-post attribute.");
+            return;
+        }
+
+        // Show confirmation dialog
+        if (confirm(message)) {
+            // Create and submit a dynamic form for POST request
+            const form = $('<form>', {
+                method: 'post',
+                action: postUrl
+            }).append('@Html.AntiForgeryToken()'); // Include CSRF token if using ASP.NET Core
+
+            // Append and submit the form
+            form.appendTo('body').submit();
+        }
+    });
+
+});
+</script>

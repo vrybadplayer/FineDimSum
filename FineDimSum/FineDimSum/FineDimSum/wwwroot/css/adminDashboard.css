@@ -1,0 +1,233 @@
+﻿.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 100%; /* adjust based on your need */
+}
+
+.gradient-button {
+    background: linear-gradient(135deg, #ff914d, #ffde59); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.red-button {
+    background: #ff3131;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.form-control:focus {
+    border-color: #ffde59;
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+}
+
+/* Change border color for radio buttons on focus */
+.form-check-input:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for select dropdown on focus */
+.form-select:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for checkbox on focus */
+.form-check-input[type="checkbox"]:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+table, th, td {
+    border: none !important;
+}
+
+.table th a.asc::after {
+    content: ' ▴';
+}
+
+.table th a.des::after {
+    content: ' ▾';
+}
+
+.table-head tr {
+    border: 2px solid black;
+}
+
+.table-head tr th {
+    background-color: #878787;
+    vertical-align: middle;
+    color: white;
+}
+
+.table-head tr th a {
+    color: white;
+}
+
+button[type="reset"] {
+    background: #c7c7c7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.analytics-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
+}
+
+.basic-analytics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
+}
+
+.basic-analytics > div,
+.top-analytics {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: space-between;
+    padding: 15px;
+    border: 2px solid #c7c7c7;
+    border-radius: 7px;
+}
+
+.basic-analytics > div > div,
+.analytics-view {
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.analytics-time,
+.analytics-unit {
+    color: #878787;
+}
+
+.analytics-value {
+    font-size: 58px;
+    line-height: 1.1;
+}
+
+.analytics-value-small {
+    font-size: 32px;
+}
+
+.rectangle-pic-container,
+.round-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rectangle-pic-container > img {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.rectangle-pic-container > div,
+.round-pic-container > div {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.picture-container > img {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+}
+
+.picture-container {
+    background-color: #ffb859;
+    padding: 30px;
+    border-radius: 155px;
+}
+
+.product-sales-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+.product-sales-section > form {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-title {
+    font-size: 18px;
+    width: 100%;
+}
+
+.product-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.all-search-section {
+    display: flex;
+    align-items: flex-end;
+}
+
+.search-table td {
+    padding: 10px;
+}
+
+.button-section {
+    padding: 10px;
+}

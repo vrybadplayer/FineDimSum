@@ -1,0 +1,74 @@
+﻿@model RegisterVM
+
+@section head {
+	<link rel="stylesheet" href="/css/register.css" asp-append-version="true" />
+}
+
+
+@{
+	ViewBag.Title = "Register Page";
+}
+
+<h1 class="header">Register</h1>
+
+@if (Model.InvitationCode != null)
+{
+	<h2>Invited by user: @Model.InvitationCode</h2>
+}
+
+
+<form class="form" method="post">
+	<span class="container">
+
+		<input type="hidden" name="InvitationCode" value="@Model.InvitationCode" />
+
+		<span class="input">
+			<label asp-for="Username">Username:</label>
+			<input asp-for="Username" type="text" />
+			<span asp-validation-for="Username"></span>
+		</span>
+
+
+		<span class="input">
+			<label asp-for="Password">Password:</label>
+			<input asp-for="Password" type="password" />
+			<br />
+			<span asp-validation-for="Password"></span>
+		</span>
+
+		<span class="input">
+			<label asp-for="ConfirmPassword">Confirm Password:</label>
+			<input asp-for="ConfirmPassword" type="password" />
+			<br />
+			<span asp-validation-for="ConfirmPassword"></span>
+		</span>
+
+		<span class="input">
+			<label asp-for="Email">Email:</label>
+			<input asp-for="Email" type="email" />
+			<br />
+			<span asp-validation-for="Email"></span>
+		</span>
+
+		<span class="input">
+			<label asp-for="PhoneNumber">Phone Number:</label>
+			<input asp-for="PhoneNumber" type="number" />
+			<br />
+			<span asp-validation-for="PhoneNumber"></span>
+		</span>
+
+		<span class="input form-check radio">
+			<label>Gender:</label>
+			<input asp-for="Gender" type="radio" class="radio" value="M"/>
+			<label asp-for="Gender" class="radio">Male</label>
+			<input asp-for="Gender" type="radio" class="radio" value="F" />
+			<label asp-for="Gender" class="radio">Female</label>
+		</span>
+
+		<span class="buttons">
+			<button type="submit">Register</button>
+			<a class="guest" href="/Account/Referral">Enter/Scan Referral Code</a>
+		</span>
+
+	</span>
+</form>

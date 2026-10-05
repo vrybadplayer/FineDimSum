@@ -1,0 +1,80 @@
+﻿@model LoginVM
+@inject IConfiguration configuration
+
+@section head {
+	<link rel="stylesheet" href="/css/login.css" asp-append-version="true" />
+}
+
+@{
+	ViewBag.Title = "Login Page";
+	var siteKey = configuration["reCaptchaSettings:SiteKey"];
+}
+
+<h1 class="header">Login</h1>
+
+<form class="form" method="post" onsubmit="onSubmit(event)">
+
+	<input type="hidden" id="recaptchaTokenInputId" asp-for="RecaptchaToken" />
+
+	<span class="container">
+
+		<span class="input">
+			<label asp-for="Email" id="Email">Email:</label>
+			<input asp-for="Email" type="email" />
+			<span asp-validation-for="Email"></span>
+		</span>
+
+
+		<span class="input">
+			<label asp-for="Password">Password:</label>
+			<input asp-for="Password" type="password" />
+			<br />
+			<span asp-validation-for="Password"></span>
+		</span>
+
+		<label id="RememberMe">
+			<input asp-for="RememberMe">Remember Me
+		</label>
+
+		<span class="links">
+			<div class="links">
+				<a href="/Account/Register">Register</a>
+				<a href="/Account/ForgotPassword">Forgot Password</a>
+				<a href="/Account/ResendVerification">Resend Verification</a>
+			</div>
+		</span>
+
+
+				<div id="html_element"></div>
+
+
+		<span class="buttons">
+			<button type="submit">Login</button>
+			<a class="guest" asp-controller="Account" asp-action="Guest">Continue as Guest</a>
+		</span>
+
+	</span>
+</form>
+
+
+@section foot {
+
+	<script type="text/javascript">
+		var onloadCallback = function() {
+		   grecaptcha.render('html_element', {
+		  'sitekey' : '@siteKey'
+		});
+		};
+
+		function onSubmit(event) {
+			var token = grecaptcha.getResponse();
+			document.getElementById("recaptchaTokenInputId").value = token;
+		}
+
+	</script>
+
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+			async defer>
+	</script>
+
+}

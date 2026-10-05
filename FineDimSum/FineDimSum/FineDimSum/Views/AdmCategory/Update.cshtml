@@ -1,0 +1,68 @@
+﻿@model CategoryVM
+
+@{
+	ViewBag.Title = "Fine Dim Sum | Category Details";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/manageCategory.css" asp-append-version="true" />
+}
+
+<div class="container mb-5 mt-4">
+	<a class="back-btn" href="/AdmCategory/CategoryManagement">Back</a>
+	<div class="title-container">
+		<div class="title">CATEGORY DETAILS</div>
+		<div class="id-no">Category ID: @Model?.Id</div>
+	</div>
+</div>
+
+<div class="content-wrapper">
+	<div class="container mt-5">
+		<!-- Category Information -->
+		<form method="post" class="category-form" asp-action="Update" onsubmit="return confirm('Are you sure to modify this category?')">
+			<div class="category-info-section">
+				<div class="section-header">
+					<div>
+						<img src="/images/Icon/category.png" />
+						<div>Category Information</div>
+					</div>
+					<div class="underline"></div>
+				</div>
+				<div class="section-info">
+					@Html.HiddenFor(c => c.Id)
+					<div>
+						<label class="form-label" asp-for="Name"></label>
+						@if (String.Equals(Model?.Name, "Others", StringComparison.OrdinalIgnoreCase) && Model?.Id == 1)
+						{
+							<div class="form-control">@Model?.Name</div>
+						} else 
+						{
+							<input class="form-control mb-2" asp-for="Name" placeholder="Category Name" maxlength="100" data-trim autofocus>
+							<span asp-validation-for="Name"></span>
+						}
+					</div>
+					<div>
+						<label class="form-label" asp-for="Description"></label>
+						<textarea class="form-control mb-2" asp-for="Description" placeholder="Category Description" maxlength="200" data-trim></textarea>
+						<span asp-validation-for="Description"></span>
+					</div>
+					<div>
+						<label class="form-label" asp-for="Status"></label>
+						<select class="form-select mb-2" asp-for="Status" asp-items="ViewBag.StatusList">
+							<option value="">-- Select Status --</option>
+						</select>
+						<span asp-validation-for="Status"></span>
+					</div>
+				</div>
+			</div>
+			<div class="button-section">
+				<button class="gradient-button">Save</button>
+				<button data-id="@Model?.Id" data-post-delete="/AdmCategory/Delete/@Model?.Id" class="red-button">Delete Category</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section foot {
+	<script src="/js/updateCategory.js" asp-append-version="true"></script>
+}

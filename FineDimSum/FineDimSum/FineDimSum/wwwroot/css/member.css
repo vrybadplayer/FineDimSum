@@ -1,0 +1,13 @@
+﻿.gradient-button {
+    background: linear-gradient(135deg, #ff914d, #ffde59); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+    text-decoration: none;
+}

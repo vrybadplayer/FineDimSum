@@ -1,0 +1,96 @@
+﻿@model IEnumerable<dynamic>
+@section head {
+    <link rel="stylesheet" href="/css/member.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Admin List";
+}
+
+@{
+    ViewData["Title"] = "Admin List";
+    var roles = new[] { "All", "Manager", "Staff", "Chef" }; // Define available roles
+    var statuses = new[] { "All", "Active", "Inactive", "Terminated" }; // Define available statuses
+}
+
+
+
+<div class="container mt-5">
+<h2>Admin List</h2>
+
+    <br />
+
+    <form method="get" asp-action="Index" class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="searchQuery" class="form-control" placeholder="Search by username or email" value="@ViewData["SearchQuery"]" />
+        </div>
+        <div class="col-md-3">
+            <select name="filterRole" class="form-select">
+                @foreach (var role in roles)
+                {
+                    if (role == (string)ViewData["FilterRole"])
+                    {
+                        <option value="@role" selected="selected">@role</option>
+                    }
+                    else
+                    {
+                        <option value="@role">@role</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="filterStatus" class="form-select">
+                @foreach (var status in statuses)
+                {
+                    if (status == (string)ViewData["FilterStatus"])
+                    {
+                        <option value="@status" selected="selected">@status</option>
+                    }
+                    else
+                    {
+                        <option value="@status">@status</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="gradient-button w-100">Search</button>
+        </div>
+    </form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var admin in Model)
+        {
+            <tr>
+                <th scope="row">@admin.Id</th>
+                <td>@admin.Username</td>
+                <td>@admin.Email</td>
+                <td>@admin.Role</td>
+                <td>@admin.Status</td>
+                <td>
+                        <a asp-action="Details" asp-route-id="@admin.Id" class="gradient-button btn-sm">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@*@if (User.IsInRole("Root"))
+{*@
+<button class="gradient-button" onclick="location.href='@Url.Action("Create", "AdmAdmin")'">Add New Admin</button>
+@*} remember to turn of this after debug , it should only allowed root to access*@
+
+                </div>

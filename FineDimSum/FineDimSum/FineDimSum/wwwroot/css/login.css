@@ -1,0 +1,98 @@
+﻿form, h1.header {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+h1.header {
+    font-size: 80px;
+    padding: 25px 0px 60px 0px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+}
+
+label {
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+
+.links {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    height: 60px;
+    width: 350px;
+    background: linear-gradient(135deg, #ff914d, #ffde59);
+    transition: 0.3s ease-in-out;
+}
+
+    button:hover {
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.4),0 7px 10px 0 rgba(0,0,0,0.3);
+    }
+
+.input {
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px 0px 20px;
+}
+
+input {
+    border-radius: 30px;
+    border: solid 1px;
+    width: 400px;
+    height: 50px;
+}
+
+div.links {
+    width: 350px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 20px;
+}
+
+
+label#Email {
+    margin-left: 50px;
+}
+
+input#RememberMe {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+label#RememberMe {
+    font-size: 20px;
+    padding-left: 170px;
+}
+
+div#html_element{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px 0px 5px;
+}

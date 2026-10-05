@@ -1,0 +1,79 @@
+﻿@model Product
+
+@{
+	ViewBag.Title = "Fine Dim Sum | Detail";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/custProductDetail.css" asp-append-version="true" />
+}
+
+<div class="container all-container">
+	<div>
+		<a class="back-btn" href="/CustProduct/Index">&lt; &nbsp; Back</a>
+	</div>
+	<div class="all-info-section">
+		<div id="img-section">
+			<img src="/images/AdmProduct/Product/@Model.Image" alt="@Model.Name" />
+		</div>
+		<form class="form-section" action="/CustCart/AddToCart" method="post">
+			<input type="hidden" name="restTableId" value="@Context.Session.GetString("TableId")" />
+			<input type="hidden" name="productVariationOptionId" id="productVariationOptionId" />
+			<input type="hidden" id="productImg" value="/images/AdmProduct/Product/@Model.Image" />
+			<div>
+				<div class="product-title">@Model.Name</div>
+				<div class="product-description">@Model.Description</div>
+			</div>
+			<div class="input-section">
+				<div>Option:</div>
+				<div class="option-section">
+					@foreach (var variation in Model.ProductVariationOptions)
+					{
+						<div class="variation-option @(variation.StockQuantity <= 0 ? "disabled" : "")"
+						data-variation-id="@variation.Id"
+						data-stock-qty="@variation.StockQuantity"
+						data-variation-image="/images/AdmProduct/ProductVariationOption/@variation.Image">
+							<div class="variation-name">@variation.Name</div>
+							<div class="variation-price">RM @variation.UnitPrice.ToString("F2")</div>
+							@if (variation.StockQuantity <= 0) 
+							{
+								<div class="text-danger">Out of Stock</div>
+							}
+						</div>
+					}
+				</div>
+			</div>
+			<div class="input-section">
+				<div>Quantity:</div>
+				<input type="number" class="form-control" name="quantity" id="quantity" value="1" min="1" />
+			</div>
+			<div class="input-section">
+				<div>Remarks (Optional):</div>
+				<textarea class="form-control" name="remark" value="No Remark" maxlength="50"></textarea>
+			</div> 
+			<button type="submit" class="btn btn-primary btn-sm gradient-button" id="add-to-cart-btn" disabled>Add to Cart</button>
+		</form>
+	</div>
+	<div class="related-product-section">
+
+	</div>
+	<div class="related-product-section">
+		<div class="related-product-title">Related Products</div>
+		<div class="related-products">
+			@foreach (var p in ViewBag.RelatedProducts)
+			{
+				<a class="product-item" href="/CustProduct/Detail?id=@p.Id">
+					<img src="/images/AdmProduct/Product/@p.Image" alt="@p.Name" />
+					<div>
+						<div class="item-name">@p.Name</div>
+						<div class="item-price"></div>
+					</div>
+				</a>
+			}
+		</div>
+	</div>
+</div>
+
+@section foot {
+	<script src="/js/custProductDetail.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,47 @@
+﻿﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<dynamic>
+
+    @Html.Hidden("sort", "", new { form = "searchForm" })
+    @Html.Hidden("dir", "", new { form = "searchForm" })
+
+    <div class="record-no-section">
+        <div>
+            @Model.Count() of @Model.TotalItemCount record(s) | Page @Model.PageNumber of @Model.PageCount
+        </div>
+    </div>
+
+    <div class="all-item">
+        @foreach (var p in Model)
+        {
+            <a class="product-item" href="/CustProduct/Detail?id=@p.Id">
+                <img src="/images/AdmProduct/Product/@p.Image" alt="@p.Name" />
+                <div>
+                    <div class="item-name">@p.Name</div>
+                    <div class="item-price">RM @(p.FirstVariationOption != null ? p.FirstVariationOption.UnitPrice : "N/A")</div>
+                </div>
+            </a>
+        }
+    </div>
+
+
+    @{
+        var options = PagedListRenderOptions.ClassicPlusFirstAndLast;
+        options.LinkToFirstPageFormat = "First";
+        options.LinkToLastPageFormat = "Last";
+        options.LinkToPreviousPageFormat = "Previous";
+        options.LinkToNextPageFormat = "Next";
+
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "get",
+            UpdateTargetId = "target",
+            LoadingElementId = "#loader",
+        };
+    }
+
+    @Html.PagedListPager(
+                 Model,
+                 p => $"?search={ViewBag.Name}&category={ViewBag.Category}&minPrice={ViewBag.MinPrice}&maxPrice={ViewBag.MaxPrice}&sort={ViewBag.Sort}&dir={ViewBag.Dir}&page={p}",
+                 PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(options, ajaxOptions)
+             )

@@ -1,0 +1,111 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Category>
+
+@{
+    string[] fields = ["Category Id", "Category Name", "Category Description", "Status"];
+}
+
+@Html.Hidden("sort", "", new { form = "f" })
+@Html.Hidden("dir", "", new { form = "f" })
+
+<form method="post" action="/AdmCategory/DeleteMany" id="deleteForm" onsubmit="return confirm('Are you sure to delete the selected categories?')"></form>
+
+<div class="record-no-section">
+    <div>
+        @Model.Count() of @Model.TotalItemCount record(s) |
+        Page @Model.PageNumber of @Model.PageCount
+    </div>
+    <a class="gradient-button" href="/AdmCategory/Create">+ Add New Category</a>
+</div>
+
+<div>
+    <button data-check="ids">Check All</button>
+    <button data-uncheck="ids">Uncheck All</button>
+    <button form="deleteForm" class="red-button">Delete Checked</button>
+</div>
+
+<table class="table table-hover table-light mt-3">
+    <thead class="table-head">
+        <tr>
+            <th></th>
+            @foreach (var f in fields)
+            {
+                string d = "asc";
+                string c = "";
+
+                if (f == ViewBag.Sort)
+                {
+                    d = ViewBag.Dir == "des" ? "asc" : "des";
+                    c = ViewBag.Dir;
+                }
+
+                <th>
+                    <a data-ajax="true"
+                       data-ajax-update="#category-records"
+                       data-ajax-loading="#loader"
+                       href="?category=@ViewBag.Name&status=@ViewBag.Status&sort=@f&dir=@d" class="@c">@f</a>
+                </th>
+            }
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr data-checkable>
+            <td>
+                <input type="checkbox" class="form-check-input" name="ids" form="deleteForm" value="@c.Id" />
+            </td>
+            <td>@c.Id</td>
+            <td>@c.Name</td>
+            <td>@c.Description</td>
+            @{
+                var statusColors = new Dictionary <string, string>
+                {
+                    { "Active", "status-active" },
+                    { "Inactive", "status-inactive" },
+                    { "Terminated", "status-terminated" },
+                    { "", "" }
+                };
+
+                ViewBag.StatusColor = statusColors.ContainsKey(c.Status) ? statusColors[c.Status] : "";
+            }
+            <td class="@ViewBag.StatusColor">@c.Status</td>
+            <td class="action-button-section">
+                <div>
+                    <button data-get="/AdmCategory/Update?id=@c.Id" class="gradient-button edit-btn">
+                        Edit
+                    </button>
+                    <button data-id="@c.Id" data-post-delete="/AdmCategory/Delete/@c.Id" class="red-button delete-btn">
+                        Delete
+                    </button>
+                </div>
+                
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@{
+    var options = PagedListRenderOptions.ClassicPlusFirstAndLast;
+    options.LinkToFirstPageFormat = "First";
+    options.LinkToLastPageFormat = "Last";
+    options.LinkToPreviousPageFormat = "Previous";
+    options.LinkToNextPageFormat = "Next";
+
+    var ajaxOptions = new AjaxOptions
+            {
+                HttpMethod = "get",
+                UpdateTargetId = "category-records",
+                LoadingElementId = "#loader",
+            };
+}
+
+@Html.PagedListPager(
+        Model,
+            p => $"?category={ViewBag.Name}&status={ViewBag.Status}&sort={ViewBag.Sort}&dir={ViewBag.Dir}&page={p}",
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(options, ajaxOptions)
+    )

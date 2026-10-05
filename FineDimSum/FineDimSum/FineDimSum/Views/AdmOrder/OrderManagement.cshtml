@@ -1,0 +1,164 @@
+﻿@model List<OrderItemVM>
+
+@section head {
+	<link rel="stylesheet" href="/css/orderManagement.css" asp-append-version="true" />
+}
+
+@{
+	ViewBag.Title = "Order Management Page";
+}
+
+
+@{
+	string HasDelivered = ViewBag.HasDelivered;
+	string AllDelivered = ViewBag.AllDelivered;
+
+	string value = "0px";
+
+	if (HasDelivered == "True" && AllDelivered == "True")
+	{
+		value = "0px";
+	}
+
+	if (AllDelivered != "True" && HasDelivered != "True")
+	{
+		value = "0px";
+	}
+
+	if (HasDelivered == "True" && AllDelivered != "True")
+	{
+		value = "150px";
+	} 
+
+
+}
+
+<div class="top">
+	<a href="OrderTable" id="backBtn">Back</a>
+	<h1 class="header" style="padding-right: @value;">Order Management</h1>
+
+	@* If Delivered, do not display this button *@
+	@if (HasDelivered != "True")
+	{
+		<form asp-controller="AdmOrder" asp-action="CancelOrder" asp-route-orderId="@ViewBag.OrderId" method="POST" id="cancelOrder">
+			<button type="Submit" id="cancelOrder">Cancel Order</button>
+		</form>
+	}
+
+	@* If not ALL Delivered, do not display this button *@
+	@if (AllDelivered == "True" && ViewBag.Status == "Unpaid")
+	{
+		<form asp-controller="AdmOrder" asp-action="ConfirmPayment" asp-route-orderId="@ViewBag.OrderId" method="POST" id="confirmBtn">
+			<button type="Submit" id="confirmBtn">Confirm Payment</button>
+		</form>
+	}
+
+</div>
+
+<div class="middle">
+
+	<div id="middleLeft">
+		@*Empty Space*@
+	</div>
+
+	<div id="middleCenter">
+		<p>Order Id: @ViewBag.OrderId</p>
+		<p>Table No: @ViewBag.TableNo </p>
+		<p>Status: @ViewBag.Status </p>
+	</div>
+
+	@* TODO *@
+	<div id="middleRight">
+		@* Change ASP Action & Value *@
+		@* <form asp-controller="AdmOrder" asp-action="AddItem" asp-route-orderId="@ViewBag.OrderId" asp-route-tableId="@ViewBag.TableId" method="get" id="addItem"> *@
+		@* 	<button type="submit" class="addItem">Add Item</button> *@
+		@* </form> *@
+		<form method="get" action="/AdmOrder/AddItem" id="addItem">
+			<input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+			<input type="hidden" name="tableId" value="@ViewBag.TableId" />
+			<button type="submit" class="addItem">Add Item</button>
+		</form>
+	</div>
+
+</div>
+
+@* Table Header *@
+
+<table>
+	<tr>
+		<th>Order Item Id</th>
+		<th>Item</th>
+		<th>Name</th>
+		<th>Options</th>
+		<th>Quantity</th>
+		<th>Status</th>
+		<th>Remarks</th>
+		<th>Manage</th>
+	</tr>
+
+	<tr>
+		<td colspan="8" style="border-top: 1px solid black; height: auto; padding: 0px 0px 15px 0px;"></td>
+	</tr>
+
+
+	@foreach (OrderItemVM vm in Model)
+	{
+
+		<tr>
+			<td>@vm.OrderItemId</td>
+			<td><img src="/images/Order/@vm.Image" /></td>
+			<td>@vm.ProductName</td>
+			<td>@vm.VariationOptionName</td>
+			<td>@vm.Quantity</td>
+			<td>
+				@if (ViewBag.Status != "Unpaid")
+				{
+					<form id="statusForm_@vm.OrderItemId" method="POST" asp-controller="AdmOrder" asp-action="OrderManagement">
+						<input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+						<input type="hidden" name="tableNo" value="@ViewBag.TableNo" />
+						<input type="hidden" name="orderItemId" value="@vm.OrderItemId" />
+						<select id="status_@vm.OrderItemId" name="selectedStatus" onchange="submitForm(@vm.OrderItemId)">
+						<option value="Preparing" selected="@(vm.Status == "Preparing")">Preparing</option>
+						<option value="Ready" selected="@(vm.Status == "Ready")">Ready</option>
+						<option value="Delivered" selected="@(vm.Status == "Delivered")">Delivered</option>
+						</select>
+					</form>
+				} else {
+					@vm.Status
+				}
+			</td>
+			<td>
+				<textarea readonly rows="2" cols="20">@vm.Remark</textarea>
+			</td>
+			<td>
+				@if (vm.Status != "Delivered")
+				{
+					<form id="cancelForm" method="POST" action="/AdmOrder/CancelItem">
+						<input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+						<input type="hidden" name="OrderItemId" value="@vm.OrderItemId" />
+						<button type="submit" class="cancelBtn">Cancel Item</button>
+					</form>
+				}
+			</td>
+		</tr>
+	}
+
+
+</table>
+
+@section foot {
+	<script>
+		function submitForm(orderItemId) {
+			var form = document.getElementById('statusForm_' + orderItemId);
+			form.submit();
+		}
+	</script>
+
+	<script>
+		function cancel() {
+			alert("Are you sure you want to cancel this item?");
+		}
+	</script>
+
+}
+

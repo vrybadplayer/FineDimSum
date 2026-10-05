@@ -1,0 +1,50 @@
+﻿@section head {
+    <link rel="stylesheet" href="/css/tableManagement.css" asp-append-version="true" />
+}
+
+@{
+    ViewBag.Title = "Fine Dim Sum | Order History";
+}
+
+<div class="container mt-2">
+    <div class="header">
+        <div class="title">Order History</div>
+        <div class="info-num">(@Model.Count) Order(s)</div>
+    </div>
+    <div class="underline mb-3"></div>
+
+    <form class="row g-3 mb-3"
+          data-ajax="true"
+          data-ajax-update="#target"
+          data-ajax-loading="#loader"
+          id="f">
+
+        <div class="col-md-3">
+            <input type="search"
+                   class="form-control"
+                   name="search"
+                   value="@ViewBag.Search"
+                   placeholder="Search Order Id or Order Item Name" />
+        </div>
+        <div class="col-md-2 d-flex justify-content-end">
+            <button type="submit" class="gradient-button me-2">Search</button>
+            <button type="reset" class="btn btn-secondary reset">Reset</button>
+        </div>
+        <img src="/images/loader.gif" id="loader" style="display: none; width: 50px;" />
+    </form>
+
+    <div id="target">
+        <partial name="_PastOrders">
+    </div>
+</div>
+
+@section foot {
+    <script>
+        let timer = null;
+
+        $('#search').on('input', e => {
+            clearTimeout(timer);
+            timer = setTimeout(() => $(e.target.form).submit(), 500);
+        });
+    </script>
+}

@@ -1,0 +1,22 @@
+-- This is for reset database
+
+-- Step 1: Temporarily disable all foreign key constraints
+EXEC sp_msforeachtable "ALTER TABLE ? NOCHECK CONSTRAINT ALL";
+
+-- Step 2: Delete all data from tables
+EXEC sp_msforeachtable "DELETE FROM ?";
+
+-- Step 3: Reset the identity for tables with auto-increment columns
+DBCC CHECKIDENT ('Users', RESEED, 0);
+DBCC CHECKIDENT ('Tokens', RESEED, 0);
+DBCC CHECKIDENT ('Categories', RESEED, 0);
+DBCC CHECKIDENT ('Products', RESEED, 0);
+DBCC CHECKIDENT ('ProductVariationOptions', RESEED, 0);
+DBCC CHECKIDENT ('RestTables', RESEED, 0);
+DBCC CHECKIDENT ('CartItems', RESEED, 0);
+DBCC CHECKIDENT ('Orders', RESEED, 0);
+DBCC CHECKIDENT ('OrderItems', RESEED, 0);
+DBCC CHECKIDENT ('Payments', RESEED, 0);
+
+-- Step 4: Re-enable all foreign key constraints
+EXEC sp_msforeachtable "ALTER TABLE ? CHECK CONSTRAINT ALL";

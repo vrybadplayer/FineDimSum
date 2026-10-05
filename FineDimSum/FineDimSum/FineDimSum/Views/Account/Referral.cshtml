@@ -1,0 +1,82 @@
+﻿@model string
+
+@{
+	ViewBag.Title = "Referral Page";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/referral.css" asp-append-version="true" />
+}
+
+
+<h1 class="header">Referral</h1>
+
+<form class="form" method="post">
+	<span class="container">
+
+		<div id="you-qr-result"></div>
+
+		<div style="display: flex; justify-content: center;">
+			<div id="my-qr-reader">
+
+			</div>
+		</div>
+
+		<br />
+		<br />
+
+		<h2>OR</h2>
+		<span class="input">
+			<label for="ReferralCode">Invidation Code:</label>
+			<input name="InvitationCode" value="@ViewBag.InvitationCode" id="InvitationCode" type="number" />
+					<br />
+		</span>
+
+		<span class="buttons">
+			<button type="submit">Enter</button>
+		</span>
+
+	</span>
+</form>
+
+
+@section foot {
+	<script src="https://unpkg.com/html5-qrcode"></script>
+	
+	<script>
+		// Check if DOM is ready
+		function domReady(fn){
+			if(document.onreadystatechange==="complete" 
+			|| document.readyState==="interactive"){
+				setTimout(fn,1)
+			}else {
+				document.addEventListener("DOMContentLoaded", fn)
+			}
+		}
+
+		domReady(function() {
+			var myqr = document.getElementById('you-qr-result')
+			var lastResult, countResults = 0;
+			var stringOutput;
+
+			// If found you-qr-code
+			function onScanSuccess(decodeText,decodeResult){
+				if(decodeText !== lastResult){
+					++countResults;
+					lastResult = decodeText;
+
+					// Redirect with Value
+					stringOutput = decodeText,decodeResult;
+					window.location.href = `/Account/Referral?InvitationCode=${stringOutput}`;
+				}
+			}
+
+			// Render camera
+			var htmlscanner = new Html5QrcodeScanner(
+				"my-qr-reader", {fps: 30, qrbox: 250})
+
+				htmlscanner.render(onScanSuccess)
+
+		})
+	</script>
+}

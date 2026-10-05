@@ -1,0 +1,73 @@
+﻿/* The base of the webpage */
+
+h1.header {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    padding: 0px 0px 0px 200px;
+}
+
+
+label {
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+input {
+    border-radius: 30px;
+    border: solid 1px;
+    width: 120px;
+    height: 40px;
+    margin-bottom: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+tr.link {
+    cursor: pointer;
+}
+
+    tr.link:hover {
+        background-color: #f0f0f0;
+    }
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header {
+    flex: 1;
+    text-align: center; 
+    font-size: 40px;
+}
+
+.form {
+    display: flex; 
+    align-items: center; 
+}
+
+table {
+    display: flex;
+    justify-content: center;
+    min-height: 400px;
+}
+
+th, td {
+    text-align:center;
+    width: 250px;
+}
+
+th {
+    padding: 0px 0px 10px 0px;
+}
+
+td {
+    padding: 10px 0px 10px 0px;
+}
+

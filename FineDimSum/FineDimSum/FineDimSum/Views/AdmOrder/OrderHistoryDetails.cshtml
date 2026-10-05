@@ -1,0 +1,95 @@
+﻿@model OrderHistoryDetailsVM
+
+
+@{
+	ViewBag.Title = "Order History Details Page";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/orderHistoryDetails.css" asp-append-version="true" />
+}
+
+@{
+	int i = 1;
+}
+
+<div class="top">
+	<a href="OrderHistory" id="backBtn">Back</a>
+	<h1 class="header" ">Order History Details</h1>
+</div>
+
+<div class="middle">
+
+	<div id="middleLeft">
+	@*Empty Space*@
+	</div>
+
+	<div id="middleCenter">
+		<p>Order Id: @ViewBag.OrderId</p>
+	</div>
+
+	<div id="middleRight">
+	@* Empty Space *@
+	</div>
+
+</div>
+
+	@* Table Header *@
+
+<table>
+	<tr>
+		<th>No.</th>
+		<th>Item</th>
+		<th>Name</th>
+		<th>Options</th>
+		<th>Quantity</th>
+		<th>Price</th>
+	</tr>
+
+	<tr>
+		<td colspan="6" style="border-top: 1px solid black; height: auto; padding: 0px 0px 15px 0px;"></td>
+	</tr>
+
+
+	@foreach (OrderHistoryDetailsVM1 vm in Model.vm1)
+	{
+
+		<tr>
+			<td>@i</td>
+			<td><img src="/images/Order/@vm.ImageURL" /></td>
+			<td>@vm.Name</td>
+			<td>@vm.Options</td>
+			<td>@vm.Quantity</td>
+			@* This should be the product of UnitPrice * Quantity  *@
+			<td>RM @vm.Price</td>
+		</tr>
+		i++;
+	}
+
+	<tr>
+		<td colspan="6" style="border-top: 1px solid black; height: auto; padding: 0px 0px 15px 0px;"></td>
+	</tr>
+
+</table>
+
+<div class="middle">
+
+	<div id="middleLeft">
+	<p>Payment Method: @Model.vm2.PaymentMethod</p>
+		<p>Date Time: @Model.vm2.DateTime</p>
+	</div>
+
+	<div id="middleCenter">
+		@* Empty Space *@
+	</div>
+
+	<div id="middleRight">
+		<p>Subtotal: RM @Model.vm2.Subtotal</p>
+		<p>Tax: RM @Model.vm2.Tax</p>
+		<p>Service Charge: RM @Model.vm2.ServiceCharge</p>
+		<p>Promotion: -RM @Model.vm2.Promotion</p>
+		<p>Total: RM @Model.vm2.Total</p>
+	</div>
+
+</div>
+

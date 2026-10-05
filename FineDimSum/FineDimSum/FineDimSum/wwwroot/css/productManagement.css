@@ -1,0 +1,205 @@
+﻿.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.info-num {
+    font-size: 24px;
+    color: #000;
+    font-weight: bold;
+}
+
+.underline {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 100%; /* adjust based on your need */
+}
+
+.gradient-button {
+    background: linear-gradient(135deg, #ff914d, #ffde59); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.red-button {
+    background: #ff3131;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.form-control:focus {
+    border-color: #ffde59;
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+}
+
+/* Change border color for radio buttons on focus */
+.form-check-input:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for select dropdown on focus */
+.form-select:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for checkbox on focus */
+.form-check-input[type="checkbox"]:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+table, th, td {
+    border: none !important;
+}
+
+.table th a.asc::after {
+    content: ' ▴';
+}
+
+.table th a.des::after {
+    content: ' ▾';
+}
+
+.table-head tr {
+    border: 2px solid black;
+}
+
+.table-head tr th {
+    background-color: #878787;
+    vertical-align: middle;
+    color: white;
+}
+
+.table-head tr th a {
+    color: white;
+}
+
+.search-filter-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 18px;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.filter-section > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-section > div > div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.button-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.record-no-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .record-no-section a {
+        text-decoration: none;
+    }
+
+button[type="reset"] {
+    background: #c7c7c7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.status-active {
+    color: green !important;
+}
+
+.status-inactive {
+    color: #373737 !important;
+}
+
+.status-terminated {
+    color: red !important;
+}
+
+.action-button-section > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.edit-btn, .delete-btn {
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #ff914d, #ffde59);
+}
+
+.edit-btn img, .delete-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.product-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}

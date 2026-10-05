@@ -1,0 +1,127 @@
+﻿@model FineDimSum.Models.MemberDetailsVM
+
+@section head {
+    <link rel="stylesheet" href="/css/member.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Edit Member Details";
+}
+
+<div class="center">
+    <div class=" container mt-5">
+
+        <h2>Member Details</h2>
+
+<div>
+
+            <form method="post" asp-action="Update" asp-controller="AdmMember">
+                <div class="mb-3">
+                    <label class="form-label">Username:</label>
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" name="FieldName" value="Username" />
+                    <input type="text" name="FieldValue" class="form-control" value="@Model.Username"
+                    @(Model.IsEditable ? "" : "readonly") />
+                    @if (Model.IsEditable)
+                    {
+                        <button type="submit" class="gradient-button mt-2">Save Changes</button>
+                    }
+                </div>
+            </form>
+
+        <!-- Email -->
+        <form method="post" asp-action="Update" asp-controller="AdmMember">
+            <div class="mb-3">
+                <label class="form-label">Email:</label>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="FieldName" value="Email" />
+                <input type="email" name="FieldValue" class="form-control" value="@Model.Email"
+                @(Model.IsEditable ? "" : "readonly") />
+                @if (Model.IsEditable)
+                {
+                    <button type="submit" class="gradient-button mt-2">Save Changes</button>
+                }
+            </div>
+        </form>
+
+        <!-- Phone -->
+        <form method="post" asp-action="Update" asp-controller="AdmMember">
+            <div class="mb-3">
+                <label class="form-label">Phone Number:</label>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="FieldName" value="PhoneNumber" />
+                    <input type="text" name="FieldValue" class="form-control" value="@Model.PhoneNumber" pattern="\d{3}-\d{7-8}"  title="Phone number must be numeric and 8-15 digits long."
+                @(Model.IsEditable ? "" : "readonly") />
+                @if (Model.IsEditable)
+                {
+                    <button type="submit" class="gradient-button mt-2">Save Changes</button>
+                }
+            </div>
+        </form>
+
+
+
+        <!-- Points -->
+        <form method="post" asp-action="Update" asp-controller="AdmMember">
+            <div class="mb-3">
+                <label class="form-label">Points:</label>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="FieldName" value="Points" />
+                <input type="number" name="FieldValue" class="form-control" value="@Model.Points" min="0"
+                @(Model.IsEditable ? "" : "readonly") />
+                @if (Model.IsEditable)
+                {
+                    <button type="submit" class="gradient-button mt-2">Save Changes</button>
+                }
+            </div>
+        </form>
+
+
+        <form method="post" asp-action="Update" asp-controller="AdmMember">
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="FieldName" value="Gender" />
+                @if (Model.IsEditable)
+                {
+                    @Html.DropDownList(
+                             "FieldValue",
+                             new SelectList(new[] { "M", "F" }, Model.Gender),
+                             htmlAttributes: new { @class = "form-select" }
+                             )
+                    <button type="submit" class="gradient-button mt-2">Save Changes</button>
+                }
+                else
+                {
+                    <input type="text" class="form-control" value="@Model.Gender" readonly />
+                }
+            </div>
+        </form>
+
+        <!-- Status -->
+        <form method="post" asp-action="Update" asp-controller="AdmMember">
+            <div class="mb-3">
+                <label class="form-label">Status:</label>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="FieldName" value="Status" />
+                @if (Model.IsEditable)
+                {
+                    @Html.DropDownList(
+                             "FieldValue",
+                             new SelectList(new[] { "Active", "Inactive", "Terminated" }, Model.Status),
+                             htmlAttributes: new { @class = "form-select" }
+                             )
+                    <button type="submit" class="gradient-button mt-2">Save Changes</button>
+                }
+                else
+                {
+                    <input type="text" class="form-control" value="@Model.Status" readonly />
+                }
+            </div>
+        </form>
+        </div>
+        <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to Member List</a>
+        </div>
+    </div>
+</div>

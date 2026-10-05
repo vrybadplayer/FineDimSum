@@ -1,0 +1,199 @@
+-- This is for insert record
+
+INSERT INTO [dbo].[Users] 
+(Username, Password, Email, Status, LoginAttempts, Discriminator, Chef_Image, Manager_Image, Gender, PhoneNo, Points, RegistrationDate, QRCodeImage, InvitedBy, InvitationCount, Root_Image, Image)
+VALUES
+('Fine', 'AQAAAAIAAYagAAAAEMnEsWgn80k0SZFrL+Q1UoQjC9dDnvpPFdf9QZP5xjPGjIxqmlC6c/On1PSuZt5Thw==', 'fine@gmail.com', 'Active', 3, 'Root', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'defaultUser1.png', NULL),
+('Chef', 'AQAAAAIAAYagAAAAEBpUKUythlVpTFRWVbjv4p7c2jvBfi+UvsSe59VnYllJVwrd2/2ZEDX9aATDcZ1zuw==', 'chef@gmail.com', 'Active', 3, 'Chef', 'defaultUser2.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Jesse Pinkman', 'AQAAAAIAAYagAAAAEBS13af9NDdwZkBE1pzvhlbf8/fiq1oGBG6YZxQuwDfs5JmuTmVtgqfNY3UH0nzsow==', 'Jesse@gmail.com', 'Active', 3, 'Chef', 'defaultUser3.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Manager', 'AQAAAAIAAYagAAAAEOCFYOxTyA5CARUM+Ap9QuJsTeTMD4kulwBM12v97nZuMF1mJXJlBYv3QKP+Q8izOg==', 'manager@gmail.com', 'Active', 3, 'Manager', NULL, 'defaultUser4.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Tommy Vercetti', 'AQAAAAIAAYagAAAAEN0FPex50dOZTVhm2uyZyLZYY/4mo5BgejXvb+kIjYTMmYXawhE3FyabPJZo0ysW2A==', 'tommy@gmail.com', 'Active', 3, 'Manager', NULL, 'defaultUser5.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Staff', 'AQAAAAIAAYagAAAAEM8UXtxFL4Bgcm5tM6ve74+Bi3seYrgDcDN5+M0ZLcx0CAEr+4KWcXH/wknq2+YhFA==', 'staff@gmail.com', 'Active', 3, 'Staff', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'defaultUser6.png'),
+('Noah Jackson', 'AQAAAAIAAYagAAAAEM4/QZ+BfrnheY+53vmxHBC3mpPjwkYRjcU6Z+Eyk0XUj3+dOdAjaofNxVRRwIgWsw==', 'noah@email.com', 'Active', 3, 'Staff', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'defaultUser7.png'),
+('Guest', 'AQAAAAIAAYagAAAAEHaIWS9TSwiKH/a8UblY4+BGkmAgyWLE8pBgvQOzJhlukv7XfPYxUfHMmQxCGohSpg==', 'john.smith@email.com', 'Active', 3, 'Member', NULL, NULL, 'M', '013-4567890', 10000, '2024-12-01', NULL, NULL, 0, NULL, NULL),
+('Jane Doe', 'AQAAAAIAAYagAAAAEKh2zLJvb/mkpTb8t3aD0AQv6j0pqMJGhr37fIfQ45Gz60fYWEs3yUyA0pU8pf2JuA==', 'jane.doe@email.com', 'Active', 3, 'Member', NULL, NULL, 'F', '018-7654321', 10000, '2024-12-02', NULL, NULL, 0, NULL, NULL),
+('Alice Johnson', 'AQAAAAIAAYagAAAAEJtU+DVvjyvXzM+h49lbIbkvyHWXW0QJkgO1f4NDCMPp8xBrJEJ5JhLQOAFS2VlZ0g==', 'alice.j@email.com', 'Active', 3, 'Member', NULL, NULL, 'F', '014-5678901', 10000, '2024-11-27', NULL, NULL, 0, NULL, NULL),
+('Bob Brown', 'AQAAAAIAAYagAAAAEK5g2LpMPDpU3HNFKz1Id7EZjCeM2xM+AwfvmgPtRv3/AnRGFBsbEGosvcA5jAeAzQ==', 'bob.brown@email.com', 'Active', 3, 'Member', NULL, NULL, 'M', '015-6789012', 10000, '2024-12-26', NULL, NULL, 0, NULL, NULL),
+('Charlie Davis', 'AQAAAAIAAYagAAAAEIoA507yMGYmMrOXkeTB3SWh1SWKJUyuj9Rmmitpse+1YPhEpJ1MUXcs1gs7BTbQuw==', 'charlie.d@email.com', 'Active', 3, 'Member', NULL, NULL, 'M', '016-7890123', 10000, '2024-12-25', NULL, NULL, 0, NULL, NULL),
+('Emma Wilson', 'AQAAAAIAAYagAAAAECbjvvz5Nz2NlM5Lf2sjQPOGOzx1Wj9T9fOe1u2y+oqRmX0JyjoCEk5PDuXWOFvgmA==', 'emma.wilson@email.com', 'Active', 3, 'Member', NULL, NULL, 'F', '017-8901234', 10000, '2024-12-24', NULL, NULL, 0, NULL, NULL),
+('Olivia Thomas', 'AQAAAAIAAYagAAAAEETzTc4goxVdJWksCuKJrV38WsEYIU2FKQuQ5UBqOHEEYBOvEYBcCJyN8+F8IKEkEA==', 'olivia.t@email.com', 'Active', 3, 'Member', NULL, NULL, 'F', '018-9012345', 10000, '2024-12-23', NULL, NULL, 0, NULL, NULL),
+('Liam Jackson', 'AQAAAAIAAYagAAAAEHHG2+Y4fcJaKKSk43QI1erLMGfhZ3A1YDFjvyUKkJIhnkDq5ruQZ9pbQe5ywPRfNQ==', 'liam.j@email.com', 'Active', 3, 'Member', NULL, NULL, 'M', '019-0123456', 10000, '2024-12-22', NULL, NULL, 0, NULL, NULL),
+('Ava Martinez', 'AQAAAAIAAYagAAAAEKYD61/KPxkldNJczB10Xd5nyFusIdVo81X6s9tpuM5yqMLjDRuk/Vn+zCQstZCJLQ==', 'ava.m@email.com', 'Active', 3, 'Member', NULL, NULL, 'F', '010-1234567', 10000, '2024-12-21', NULL, NULL, 0, NULL, NULL),
+('WinKong', 'AQAAAAIAAYagAAAAEOQopCZiLb1MgDJ6dTSUuaaWA27cgoB0eWeA4r4KAvOn9ypJ68FxtZJkXfZWQl8Oyg==', 'lumwinkong@gmail.com', 'Active', 3, 'Member', NULL, NULL, 'M', '012-2918273', 10000, '2024-12-20', NULL, NULL, 0, NULL, NULL),
+('KelHeng', 'AQAAAAIAAYagAAAAEOQopCZiLb1MgDJ6dTSUuaaWA27cgoB0eWeA4r4KAvOn9ypJ68FxtZJkXfZWQl8Oyg==', 'kelheng04@gmail.com', 'Active', 3, 'Member', NULL, NULL, 'M', '012-2916283', 10000, '2024-12-20', NULL, NULL, 0, NULL, NULL);
+
+
+INSERT INTO [dbo].[Categories] 
+(Name, Description, Status)
+VALUES
+('Others', 'Discover a range of unique dishes that are just as tasty and fulfilling while not fitting into the traditional mold.', 'Active'),
+('Bun', 'Our fluffy, soft buns are stuffed with a mix of sweet and savoury treats, perfect for any fan of dim sum.', 'Active'),
+('Steamed', 'This category provides traditional dim sum treats that are brimming with real flavours and fresh ingredients, all expertly steamed.', 'Active'),
+('Fried', 'Our fried dim sum selections are golden and crispy, offering you a satisfying crunch along with savoury, rich ingredients.', 'Active'),
+('Dessert', 'Our mouthwatering dim sum desserts, which combine classic and contemporary flavours, are the perfect way to cap off your dinner.', 'Active'),
+('Drinks', 'Our refreshing drink selection, which includes both traditional teas and current favourites, will quench your thirst and go well with your dim sum lunch.', 'Active');
+
+INSERT INTO [dbo].[Products] 
+(Name, Description, Image, Status, CategoryId)
+VALUES
+('Chicken Glutinous Rice', 'Savory glutinous rice steamed with flavorful chicken and aromatic spices.', 'chicken_glutinous_rice.jpg', 'Active', 1),
+('Nyonya Glutinous Rice', 'A vibrant blue-tinted rice infused with coconut milk and paired with sweet or savory fillings.', 'nyonya_glutinous_rice.jpg', 'Active', 1),
+('Lotus Leaf Glutinous Rice', 'Fragrant glutinous rice wrapped in lotus leaves, steamed with chicken, mushrooms, and savory fillings.', 'lotus_leaf_glutinous_rice.jpg', 'Active', 1),
+('Pandan Bun', 'Soft bun infused with the aromatic flavor of pandan.', 'pandan_bun.jpg', 'Active', 2),
+('BBQ Chicken Bun', 'Fluffy bun filled with sweet and savory BBQ chicken.', 'bbq_chicken_bun.jpg', 'Inactive', 2),
+('Purple Sweet Potato Bun', 'A naturally vibrant bun with creamy sweet potato filling.', 'purple_sweet_potato_bun.jpg', 'Active', 2),
+('Mung Bean Bun', 'Delightful bun filled with smooth mung bean paste.', 'mung_bean_bun.jpg', 'Active', 2),
+('Taro Bun', 'Soft bun with a creamy taro filling.', 'taro_bun.jpg', 'Active', 2),
+('Red Bean Bun', 'Classic bun with a sweet red bean paste.', 'red_bean_bun.jpg', 'Active', 2),
+('Lotus Leaf Bun', 'Fluffy steamed bun perfect for pairing with savory fillings.', 'lotus_leaf_bun.jpg', 'Active', 2),
+('Sesame Bun', 'Nutty and aromatic bun with a sweet sesame filling.', 'sesame_bun.jpg', 'Active', 2),
+('Hong Kong Creamy Salted Egg Bun', 'Decadent bun with a rich salted egg custard.', 'hong_kong_creamy_salted_egg_bun.jpg', 'Active', 2),
+('Mushroom Bun With Buttermilk', 'Unique bun shaped like a mushroom, filled with creamy buttermilk.', 'mushroom_bun_with_buttermilk.jpg', 'Active', 2),
+('Black Sesame Peanut Bun', 'Fragrant bun with a rich black sesame and peanut filling.', 'black_sesame_peanut_bun.jpg', 'Active', 2),
+('Peanut Bun', 'Sweet and nutty bun with a creamy peanut paste.', 'peanut_bun.jpg', 'Active', 2),
+('Fresh Shrimp Siew Mai', 'Juicy dumplings filled with fresh shrimp and savory goodness.', 'fresh_shrimp_siew_mai.jpg', 'Active', 3),
+('Mushroom Roll', 'Steamed rolls packed with mushrooms and seasoned fillings.', 'mushroom_roll.jpg', 'Active', 3),
+('Phoenix Egg Skin Roll', 'Delicate rolls wrapped in egg skin with flavorful stuffing.', 'phoenix_egg_skin_roll.jpg', 'Active', 3),
+('Carrot Chicken Roll', 'Tender rolls combining chicken and sweet carrot.', 'carrot_chicken_roll.jpg', 'Active', 3),
+('Si Chuan Style Siew Mai', 'Spicy and flavorful dumplings with a Sichuan twist.', 'si_chuan_style_siew_mai.jpg', 'Active', 3),
+('Salted Egg Siew Mai', 'Savory siew mai enriched with creamy salted egg yolk.', 'salted_egg_siew_mai.jpg', 'Active', 3),
+('Otak-otak Siew Mai', 'Dumplings infused with spicy otak-otak flavors.', 'otak-otak_siew_mai.jpg', 'Active', 3),
+('Teow Chew Style Siew Mai', 'Traditional dumplings with flavorful Teow Chew-style fillings.', 'teow_chew_style_siew_mai.jpg', 'Active', 3),
+('Bean Curd Siew Mai', 'Light and wholesome dumplings with bean curd filling.', 'bean_curd_siew_mai.jpg', 'Active', 3),
+('Salted Egg Roll', 'Steamed rolls filled with rich and creamy salted egg custard.', 'salted_egg_roll.jpg', 'Active', 3),
+('Shrimp Roll', 'Crispy rolls packed with juicy shrimp and flavorful seasoning.', 'shrimp_roll.jpg', 'Active', 4),
+('BBQ Chicken Spring Roll', 'Golden spring rolls filled with sweet and savory BBQ chicken.', 'bbq_chicken_spring_roll.jpg', 'Inactive', 4),
+('Otak-otak Spring Roll', 'Spring rolls infused with spicy and aromatic otak-otak.', 'otak-otak_spring_roll.jpg', 'Active', 4),
+('Salad Shrimp Puff', 'Light and flaky puffs filled with creamy salad shrimp.', 'salad_shrimp_puff.jpg', 'Active', 4),
+('Prawn Meatball', 'Tender and juicy meatballs made with fresh prawn.', 'prawn_meatball.jpg', 'Active', 4),
+('Veggie Spring Roll', 'Crispy rolls filled with a medley of fresh vegetables.', 'veggie_spring_roll.jpg', 'Active', 4),
+('Golden Salted Egg Roll', 'Savory rolls with a rich and creamy salted egg filling.', 'golden_salted_egg_roll.jpg', 'Active', 4),
+('Kuih Bakul Roll', 'Crispy rolls with sweet and sticky kuih bakul inside.', 'kuih_bakul_roll.jpg', 'Active', 4),
+('Purple Sweet Potato Sesame Ball', 'Sweet potato balls coated in sesame, crispy on the outside and soft inside.', 'purple_sweet_potato_sesame_ball.jpg', 'Active', 4),
+('Durian Mochi', 'Soft and chewy mochi filled with rich and creamy durian.', 'durian_mochi.jpg', 'Active', 5),
+('Osmanthus Cake', 'Delicate jelly-like cake infused with fragrant osmanthus flowers.', 'osmanthus_cake.jpg', 'Active', 5),
+('Barley Water', 'A refreshing drink with a light, nutty flavor, perfect for cooling off.', 'barley_water_hot.jpg', 'Active', 6),
+('Chinese Black Tea', 'Bold and aromatic tea with a rich, earthy taste.', 'chinese_black_tea_cup.jpg', 'Active', 6),
+('Chrysanthemum Tea', 'Floral tea with a soothing, mildly sweet flavor.', 'chrysanthemum_tea_cup.jpg', 'Active', 6),
+('Jasmine Tea', 'Fragrant tea infused with the delicate aroma of jasmine flowers.', 'jasmine_tea_cup.jpg', 'Active', 6),
+('Lemon Tea', 'Tangy and refreshing tea with a zesty lemon twist.', 'lemon_tea_warm.jpg', 'Active', 6),
+('Luo Han Guo', 'Naturally sweet herbal drink made from monk fruit.', 'luo_han_guo_hot.jpg', 'Active', 6),
+('Pu Er Tea', 'Aged tea with a deep, earthy flavor and smooth finish.', 'pu_er_tea_cup.jpg', 'Active', 6),
+('Shou Mei', 'Light and mellow white tea with a hint of sweetness.', 'shou_mei_cup.jpg', 'Active', 6),
+('Soy Milk', 'Creamy and nutritious drink made from fresh soybeans.', 'soy_milk_hot.jpg', 'Active', 6),
+('Tie Guan Yin', 'Premium oolong tea with a floral aroma and complex flavor profile.', 'tie_guan_yin_cup.jpg', 'Active', 6);
+
+INSERT INTO [dbo].[ProductVariationOptions] 
+(Name, UnitPrice, PreStockQuantity, StockQuantity, MinStockLevel, Image, Status, ProductId)
+VALUES
+('1 piece', 5.50, 50, 50, 10, 'chicken_glutinous_rice.jpg', 'Active', 1),
+('1 piece', 3.50, 40, 40, 10, 'nyonya_glutinous_rice.jpg', 'Active', 2),
+('1 piece', 3.50, 60, 60, 15, 'lotus_leaf_glutinous_rice.jpg', 'Active', 3),
+('1 piece', 1.80, 100, 100, 20, 'pandan_bun.jpg', 'Active', 4),
+('1 piece', 2.30, 80, 80, 15, 'bbq_chicken_bun.jpg', 'Active', 5),
+('1 piece', 1.80, 60, 60, 10, 'purple_sweet_potato_bun.jpg', 'Active', 6),
+('1 piece', 1.80, 50, 50, 10, 'mung_bean_bun.jpg', 'Active', 7),
+('1 piece', 1.80, 90, 90, 20, 'taro_bun.jpg', 'Active', 8),
+('1 piece', 1.80, 70, 70, 15, 'red_bean_bun.jpg', 'Active', 9),
+('1 piece', 1.80, 120, 120, 25, 'lotus_leaf_bun.jpg', 'Active', 10),
+('1 piece', 1.80, 100, 100, 20, 'sesame_bun.jpg', 'Active', 11),
+('1 piece', 2.20, 60, 60, 15, 'hong_kong_creamy_salted_egg_bun.jpg', 'Active', 12),
+('1 piece', 2.20, 80, 80, 20, 'mushroom_bun_with_buttermilk.jpg', 'Active', 13),
+('1 piece', 2.20, 70, 70, 15, 'black_sesame_peanut_bun.jpg', 'Active', 14),
+('1 piece', 1.80, 90, 90, 20, 'peanut_bun.jpg', 'Active', 15),
+('4 pieces', 6.40, 100, 100, 20, 'fresh_shrimp_siew_mai.jpg', 'Active', 16),
+('3 pieces', 4.80, 80, 80, 15, 'mushroom_roll.jpg', 'Active', 17),
+('3 pieces', 4.50, 70, 70, 15, 'phoenix_egg_skin_roll.jpg', 'Active', 18),
+('3 pieces', 4.50, 60, 60, 10, 'carrot_chicken_roll.jpg', 'Active', 19),
+('3 pieces', 4.80, 90, 90, 20, 'si_chuan_style_siew_mai.jpg', 'Active', 20),
+('3 pieces', 4.80, 80, 80, 20, 'salted_egg_siew_mai.jpg', 'Active', 21),
+('4 pieces', 6.40, 60, 60, 15, 'otak-otak_siew_mai.jpg', 'Active', 22),
+('3 pieces', 4.80, 70, 70, 15, 'teow_chew_style_siew_mai.jpg', 'Active', 23),
+('3 pieces', 4.80, 50, 50, 10, 'bean_curd_siew_mai.jpg', 'Active', 24),
+('4 pieces', 9.60, 100, 100, 20, 'salted_egg_roll.jpg', 'Active', 25),
+('4 pieces', 9.60, 120, 120, 25, 'shrimp_roll.jpg', 'Active', 26),
+('4 pieces', 7.20, 100, 100, 20, 'bbq_chicken_spring_roll.jpg', 'Active', 27),
+('6 pieces', 14.00, 80, 80, 15, 'otak-otak_spring_roll.jpg', 'Active', 28),
+('6 pieces', 16.00, 70, 70, 15, 'salad_shrimp_puff.jpg', 'Active', 29),
+('10 pieces', 11.00, 150, 150, 30, 'prawn_meatball.jpg', 'Active', 30),
+('6 pieces', 3.60, 90, 90, 20, 'veggie_spring_roll.jpg', 'Active', 31),
+('4 pieces', 11.00, 110, 110, 25, 'golden_salted_egg_roll.jpg', 'Active', 32),
+('4 pieces', 9.60, 60, 60, 10, 'kuih_bakul_roll.jpg', 'Active', 33),
+('4 pieces', 1.80, 80, 80, 15, 'purple_sweet_potato_sesame_ball.jpg', 'Active', 34),
+('3 pieces', 10.50, 80, 80, 15, 'durian_mochi.jpg', 'Active', 35),
+('3 pieces', 8.00, 60, 60, 10, 'osmanthus_cake.jpg', 'Active', 36),
+('Hot', 3.00, 50, 50, 10, 'barley_water_hot.jpg', 'Active', 37),
+('Cold', 3.20, 50, 50, 10, 'barley_water_cold.jpg', 'Active', 37),
+('Cup', 2.00, 80, 80, 15, 'chinese_black_tea_cup.jpg', 'Active', 38),
+('Teapot', 7.00, 40, 40, 5, 'chinese_black_tea_teapot.jpg', 'Active', 38),
+('Cup', 3.00, 80, 80, 15, 'chrysanthemum_tea_cup.jpg', 'Active', 39),
+('Teapot', 8.00, 40, 40, 5, 'chrysanthemum_tea_teapot.jpg', 'Active', 39),
+('Cup', 3.00, 80, 80, 15, 'jasmine_tea_cup.jpg', 'Active', 40),
+('Teapot', 8.00, 40, 40, 5, 'jasmine_tea_teapot.jpg', 'Active', 40),
+('Warm', 4.00, 40, 40, 10, 'lemon_tea_warm.jpg', 'Active', 41),
+('Cold', 4.20, 60, 60, 10, 'lemon_tea_cold.jpg', 'Active', 41),
+('Hot', 4.00, 40, 40, 10, 'luo_han_guo_hot.jpg', 'Active', 42),
+('Cold', 4.20, 40, 40, 10, 'luo_han_guo_cold.jpg', 'Active', 42),
+('Cup', 4.00, 60, 60, 10, 'pu_er_tea_cup.jpg', 'Active', 43),
+('Teapot', 11.00, 30, 30, 5, 'pu_er_tea_teapot.jpg', 'Active', 43),
+('Cup', 4.00, 50, 50, 10, 'shou_mei_cup.jpg', 'Active', 44),
+('Teapot', 11.00, 25, 25, 5, 'shou_mei_teapot.jpg', 'Active', 44),
+('Hot', 3.00, 60, 60, 10, 'soy_milk_hot.jpg', 'Active', 45),
+('Cold', 3.20, 60, 60, 10, 'soy_milk_cold.jpg', 'Active', 45),
+('Cup', 4.00, 70, 70, 15, 'tie_guan_yin_cup.jpg', 'Active', 46),
+('Teapot', 11.00, 30, 30, 5, 'tie_guan_yin_teapot.jpg', 'Active', 46);
+
+INSERT INTO [dbo].[RestTables] (TableNo, Status)
+VALUES
+('A01', 'Available'),
+('A02', 'In-Use'),
+('A03', 'Available'),
+('A04', 'Available'),
+('A05', 'Available'),
+('A06', 'Available'),
+('A07', 'Available'),
+('A08', 'Available'),
+('A09', 'Available'),
+('A10', 'Available'),
+('A11', 'Available'),
+('A12', 'Available'),
+('A13', 'Available'),
+('A14', 'Available'),
+('A15', 'Available'),
+('A16', 'Available'),
+('A17', 'Available'),
+('A18', 'Available'),
+('A19', 'Available'),
+('A20', 'Available');
+
+
+INSERT INTO [dbo].[CartItems] 
+(Quantity, Remark, UserId, ProductVariationOptionId, MemberId, RestTableId)
+VALUES
+(1, '-', 8, 1, 8, 1),
+(1, '-', 8, 2, 8, 1),
+(2, '-', 8, 3, 8, 1),
+(3, '-', 8, 4, 8, 1),
+(4, '-', 8, 5, 8, 1);
+
+
+INSERT INTO [dbo].[Orders] 
+(CreatedDateTime, Subtotal, SST, DiscountAmount, ServiceCharge, Total, Status, UserId, RestTableId, MemberId)
+VALUES
+('2024-12-13 12:00:00', 9.00, 0.54, 0.00, 0.90, 10.44, 'Paid', 8, 1, 8),
+('2024-12-13 13:00:00', 9.00, 0.54, 0.00, 0.90, 10.44, 'Active', 8, 2, 8);
+
+
+INSERT INTO [dbo].[OrderItems] 
+(ProductName, VariationOptionName, UnitPrice, Quantity, Remark, Image, Status, ProductVariationOptionId, OrderId)
+VALUES
+('Chicken Glutinous Rice', '1 piece', 5.50, 1, '-', '1_1.jpg', 'Delivered', 1, 1),
+('Nyonya Glutinous Rice', '1 piece', 3.50, 1, '-', '1_2.jpg', 'Delivered', 2, 1),
+('Chicken Glutinous Rice', '1 piece', 5.50, 1, '-', '2_1.jpg', 'Delivered', 1, 2),
+('Nyonya Glutinous Rice', '1 piece', 3.50, 1, '-', '2_2.jpg', 'Preparing', 2, 2);
+
+
+INSERT INTO [dbo].[Payments] 
+(Total, PaymentDateTime, PaymentMethod, OrderId)
+VALUES
+(10.44, '2024-12-13 13:00:00', 'Pay at Counter', 1);

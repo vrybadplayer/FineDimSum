@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\CustPayment\**" />
+    <Content Remove="Views\CustPayment\**" />
+    <EmbeddedResource Remove="Views\CustPayment\**" />
+    <None Remove="Views\CustPayment\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
+    <PackageReference Include="Stripe.net" Version="47.2.0" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\AdmMember\" />
+    <Folder Include="Views\AdmProduct\" />
+    <Folder Include="Views\AdmProfile\" />
+    <Folder Include="Views\AdmTable\" />
+    <Folder Include="Views\CustProfile\" />
+    <Folder Include="Views\CustOrder\" />
+    <Folder Include="Views\AdmCategory\" />
+    <Folder Include="Views\AdmAdmin\" />
+    <Folder Include="wwwroot\images\Order\" />
+    <Folder Include="wwwroot\images\Profile\" />
+    <Folder Include="wwwroot\images\Product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Account\Referral.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\custProductDetail.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

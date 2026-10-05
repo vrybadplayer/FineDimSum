@@ -1,0 +1,220 @@
+﻿.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 100%; /* adjust based on your need */
+}
+
+.gradient-button {
+    background: linear-gradient(135deg, #ff914d, #ffde59); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.red-button {
+    background: #ff3131;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.form-control:focus {
+    border-color: #ffde59;
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+}
+
+/* Change border color for radio buttons on focus */
+.form-check-input:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for select dropdown on focus */
+.form-select:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for checkbox on focus */
+.form-check-input[type="checkbox"]:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+table, th, td {
+    border: none !important;
+}
+
+.all-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    color: #939496;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-bottom: 0.3rem;
+}
+
+.all-info-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#img-section > img {
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.product-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.product-description {
+    color: #878787;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-section > div:nth-child(1) {
+    font-weight: bold;
+    color: #878787;
+}
+
+.option-section {
+    display: flex;
+    gap: 1rem;
+}
+
+.variation-option {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #c7c7c7;
+    border-radius: 0.375rem;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.variation-option.selected {
+    border-color: #333;
+    background: #f7f7f7;
+}
+
+.variation-name {
+    font-weight: bold;
+}
+
+.variation-price {
+    font-weight: bold;
+    color: #878787;
+}
+
+.disabled {
+    border: 2px solid #f2f2f2;
+}
+
+.disabled .variation-name,
+.disabled .variation-price {
+    color: #c7c7c7;
+}
+
+.related-product-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.related-product-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 0.3rem;
+    border-bottom: 3px solid black;
+}
+
+.related-products {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    justify-items: center;
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.product-item:hover {
+    box-shadow: 0 0 10px #939496;
+}
+
+.product-item > img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.product-item > div {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.item-name {
+    color: black;
+    font-weight: bold;
+}
+
+.item-price {
+    color: #878787;
+    font-weight: bold;
+}

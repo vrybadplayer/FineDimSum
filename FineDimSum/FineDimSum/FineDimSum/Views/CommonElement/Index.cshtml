@@ -1,0 +1,195 @@
+﻿
+
+<style>
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 5px;
+	}
+
+	.title {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.info-num {
+		font-size: 18px;
+		color: #000;
+		font-weight: bold;
+	}
+
+	.underline {
+		width: 100%;
+		height: 2px;
+		background-color: black;
+	}
+
+	.center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		margin: 0;
+		border: 1px solid black;
+	}
+
+	.content-wrapper {
+		width: 100%;
+		max-width: 800px; /* adjust based on your need */
+	}
+
+	.gradient-button {
+		background: linear-gradient(135deg, #ff914d, #ffde59); /* Gradient background */
+		color: white; 
+		border: none;
+		border-radius: 10px; 
+		padding: 10px 20px; 
+		font-size: 14px; 
+		font-weight: bold; 
+		cursor: pointer; 
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+		text-align: center;
+	}
+
+	.red-button {
+		background: #ff3131; 
+		color: white;
+		border: none;
+		border-radius: 10px;
+		padding: 10px 20px;
+		font-size: 14px;
+		font-weight: bold;
+		cursor: pointer;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+		text-align: center;
+	}
+
+	.form-control:focus {
+		border-color: #ffde59;
+		box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+	}
+
+	/* Change border color for radio buttons on focus */
+	.form-check-input:focus {
+		outline: none; /* Remove the default outline */
+		box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+		border-color: #ffde59; /* Border color */
+	}
+
+	/* Change border color for select dropdown on focus */
+	.form-select:focus {
+		outline: none; /* Remove the default outline */
+		box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+		border-color: #ffde59; /* Border color */
+	}
+
+	/* Change border color for checkbox on focus */
+	.form-check-input[type="checkbox"]:focus {
+		outline: none; /* Remove the default outline */
+		box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+		border-color: #ffde59; /* Border color */
+	}
+
+	table, th, td {
+		border: none !important;
+	}
+</style>
+
+<div class="container mb-5">
+	<div class="header">
+		<div class="title">Table Management</div>
+		<div class="info-num">(10) Table(s)</div>
+	</div>
+	<div class="underline"></div>
+</div>
+
+<div class="center">
+
+	<div class="content-wrapper">
+		<div class="container mt-5">
+			<!-- Form Section -->
+			<h2 class="mb-4">Form Example</h2>
+			<form>
+				<div class="mb-3">
+					<label for="exampleInputEmail" class="form-label">Email address</label>
+					<input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword" class="form-label">Password</label>
+					<input type="password" class="form-control" id="exampleInputPassword" placeholder="Enter password">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputText" class="form-label">Name</label>
+					<input type="text" class="form-control" id="exampleInputText" placeholder="Enter your name">
+				</div>
+				<div class="mb-3">
+					<label for="exampleSelect" class="form-label">Select an option</label>
+					<select class="form-select" id="exampleSelect">
+						<option selected>Choose...</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+				<div class="mb-3">
+					<label for="exampleTextarea" class="form-label">Message</label>
+					<textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Write your message"></textarea>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Gender</label>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="gender" id="genderMale" value="male">
+						<label class="form-check-label" for="genderMale">Male</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female">
+						<label class="form-check-label" for="genderFemale">Female</label>
+					</div>
+				</div>
+				<div class="mb-3 form-check">
+					<input type="checkbox" class="form-check-input" id="exampleCheck">
+					<label class="form-check-label" for="exampleCheck">I agree to the terms and conditions</label>
+				</div>
+
+				<button class="gradient-button">Add Table</button>
+				<button class="red-button">Remove</button>
+
+			</form>
+
+			<!-- Table Section -->
+			<h2 class="my-4">Table Example</h2>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Role</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>John Doe</td>
+						<td>john.doe@example.com</td>
+						<td>Admin</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>Jane Smith</td>
+						<td>jane.smith@example.com</td>
+						<td>Editor</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>Sam Brown</td>
+						<td>sam.brown@example.com</td>
+						<td>Viewer</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>

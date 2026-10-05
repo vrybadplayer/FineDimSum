@@ -1,0 +1,218 @@
+﻿@model ProductUpdateVM
+
+@{
+	ViewBag.Title = "Fine Dim Sum | Product Details";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/manageProduct.css" asp-append-version="true" />
+}
+
+<div class="container mb-5 mt-4">
+	<a class="back-btn" href="/AdmProduct/ProductManagement">Back</a>
+	<div class="title-container">
+		<div class="title">PRODUCT DETAILS</div>
+		<div class="id-no">Product ID: @Model?.Id</div>
+	</div>
+</div>
+
+<div class="content-wrapper">
+	<div class="container mt-5">
+		<!-- Product Information -->
+		<form method="post" class="product-form" enctype="multipart/form-data" asp-action="Update" onsubmit="return confirm('Are you sure to modify this product?')">
+			<div class="product-info-section">
+				<div class="section-header">
+					<div>
+						<img src="/images/Icon/product.png" />
+						<div>Product Information</div>
+					</div>
+					<div class="underline"></div>
+				</div>
+				<div class="section-info">
+					@Html.HiddenFor(p => p.Id)
+					<div>
+						<label class="form-label" asp-for="Name"></label>
+						<input class="form-control mb-2" asp-for="Name" placeholder="Product Name" maxlength="100" data-trim autofocus>
+						<span asp-validation-for="Name"></span>
+					</div>
+					<div>
+						<label class="form-label" asp-for="Description"></label>
+						<textarea class="form-control mb-2" asp-for="Description" placeholder="Product Description" maxlength="200" data-trim></textarea>
+						<span asp-validation-for="Description"></span>
+					</div>
+					<div>
+						<label class="form-label" asp-for="CategoryId"></label>
+						<select class="form-select mb-2" asp-for="CategoryId" asp-items="ViewBag.CategoryList">
+							<option value="">-- Select Category --</option>
+						</select>
+						<span asp-validation-for="CategoryId"></span>
+					</div>
+					<div>
+						<label class="form-label" asp-for="Status"></label>
+						<select class="form-select mb-2" asp-for="Status" asp-items="ViewBag.StatusList">
+							<option value="">-- Select Status --</option>
+						</select>
+						<span asp-validation-for="Status"></span>
+					</div>
+					<div>
+						<label class="form-label" asp-for="Photo"></label>
+						<div>
+							<label class="upload">
+								<input type="file" asp-for="Photo" accept="image/jpeg,image/png" hidden>
+								<img src="/images/AdmProduct/Product/@Model.Image">
+								@Html.Hidden("Image", Model.Image)
+							</label>
+						</div>
+						<span asp-validation-for="Photo"></span>
+					</div>
+				</div>
+			</div>
+			<!-- Product Variation Information -->
+			<div class="product-variation-info-section">
+				<div class="section-header">
+					<div>
+						<img src="/images/Icon/variation.png" />
+						<div>Product Variation</div>
+					</div>
+					<div class="underline"></div>
+					<div class="add-options-section">
+						<div>Variation Options</div>
+						<button type="button" id="add-variation">+ Add Variation Option</button>
+					</div>
+					
+				</div>
+				<div class="section-info">
+					<table class="table table-hover variation-table">
+						<colgroup>
+							<col style="width: 5%;">
+							<col style="width: 25%;">
+							<col style="width: 10%;">
+							<col style="width: 5%;">
+							<col style="width: 5%;">
+							<col style="width: 5%;">
+							<col style="width: 10%;">
+							<col style="width: 25%;">
+							<col style="width: 10%;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>No.</th>
+								<th>Option</th>
+								<th>Unit Price (RM)</th>
+								<th>Predefined Stock Quantity</th>
+								<th>Stock Quantity</th>
+								<th>Minimum Stock Level</th>
+								<th>Status</th>
+								<th>Image</th>
+								<th>Action(s)</th>
+							</tr>
+						</thead>
+						<span id="row-count" data-count="@Model.ProductVariationOptions.Count"></span>
+						<tbody>
+							@for (int i = 0; i < Model.ProductVariationOptions.Count; i++)
+							{
+								<tr>
+									@Html.Hidden("ProductVariationOptions[" + i + "].Id", Model.ProductVariationOptions[i].Id)
+									<td>
+										@(i + 1)
+									</td>
+									<td>
+										<input class="form-control" asp-for="ProductVariationOptions[@i].Name" maxlength="100" data-trim>
+										<span asp-validation-for="ProductVariationOptions[@i].Name"></span>
+									</td>
+									<td>
+										<input class="form-control" type="number" step="0.01" asp-for="ProductVariationOptions[@i].UnitPrice" min="0.01" max="99999999.99">
+										<span asp-validation-for="ProductVariationOptions[@i].UnitPrice"></span>
+									</td>
+									<td>
+										<input class="form-control" type="number" asp-for="ProductVariationOptions[@i].PreStockQuantity" min="0" max="100000">
+										<span asp-validation-for="ProductVariationOptions[@i].PreStockQuantity"></span>
+									</td>
+									<td>
+										<input class="form-control" type="number" asp-for="ProductVariationOptions[@i].StockQuantity" min="0" max="100000">
+										<span asp-validation-for="ProductVariationOptions[@i].StockQuantity"></span>
+									</td>
+									<td>
+										<input class="form-control" type="number" asp-for="ProductVariationOptions[@i].MinStockLevel" min="0" max="100000">
+										<span asp-validation-for="ProductVariationOptions[@i].MinStockLevel"></span>
+									</td>
+									<td>
+										<select class="form-select" asp-for="ProductVariationOptions[@i].Status" asp-items="ViewBag.StatusList">
+											<option value="">-- Select Status --</option>
+										</select>
+										<span asp-validation-for="ProductVariationOptions[@i].Status"></span>
+									</td>
+									<td>
+										<div>
+											<label class="upload">
+												<input type="file" asp-for="ProductVariationOptions[@i].Photo" accept="image/jpeg,image/png" hidden>
+												<img src="@Url.Content($"~/images/AdmProduct/ProductVariationOption/{Model.ProductVariationOptions[i].Image}")">
+												@Html.Hidden("ProductVariationOptions[" + i + "].Image", Model.ProductVariationOptions[i].Image)
+											</label>
+										</div>
+										<span asp-validation-for="ProductVariationOptions[@i].Photo"></span>
+									</td>
+									<td>
+										@if (i != 0)
+										{
+											<button type="button" class="red-button remove-variation">Remove</button>
+										}
+									</td>
+								</tr>
+							}
+							@* Variation Row Template *@
+							<tr class="variation-template" style="display: none;">
+								<td>
+									#
+								</td>
+								<td>
+									<input class="form-control" name="ProductVariationOptions[#].Name" maxlength="100" data-trim>
+								</td>
+								<td>
+									<input class="form-control" type="number" step="0.01" name="ProductVariationOptions[#].UnitPrice" value="0" min="0.01" max="99999999.99">
+								</td>
+								<td>
+									<input class="form-control" type="number" name="ProductVariationOptions[#].PreStockQuantity" value="0" min="0" max="100000">
+								</td>
+								<td>
+									<input class="form-control" type="number" name="ProductVariationOptions[#].StockQuantity" value="0" min="0" max="100000">
+								</td>
+								<td>
+									<input class="form-control" type="number" name="ProductVariationOptions[#].MinStockLevel" value="0" min="0" max="100000">
+								</td>
+								<td>
+									<select class="form-select" name="ProductVariationOptions[#].Status">
+										<option value="">-- Select Status --</option>
+										@foreach (var item in ViewBag.StatusList)
+										{
+											<option value="@item.Text">@item.Text</option>
+										}
+									</select>
+								</td>
+								<td>
+									<div>
+										<label class="upload">
+											<input type="file" name="ProductVariationOptions[#].Photo" accept="image/jpeg,image/png" hidden>
+											<img src="/images/Icon/photo.jpg">
+										</label>
+									</div>
+								</td>
+								<td>
+									<button type="button" class="red-button remove-variation">Remove</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="button-section">
+				<button class="gradient-button">Save</button>
+				<button data-id="@Model?.Id" data-post-delete="/AdmProduct/Delete/@Model?.Id" class="red-button">Delete Product</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section foot {
+	<script src="/js/manageProduct.js" asp-append-version="true"></script>
+}

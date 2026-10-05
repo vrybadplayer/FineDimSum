@@ -1,0 +1,61 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<dynamic>
+
+@{
+	ViewBag.Title = "Fine Dim Sum | Product Management";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/productManagement.css" asp-append-version="true" />
+}
+
+<div class="container mb-5">
+	<div class="header">
+		<div class="title">PRODUCT MANAGEMENT</div>
+		<div class="info-num">(@ViewBag.NumOfProducts) Record(s)</div>
+	</div>
+	<div class="underline"></div>
+</div>
+
+
+<div class="content-wrapper">
+	<div class="container mt-5 d-flex flex-column gap-4">
+		<!-- Search & Filter -->
+		<form data-ajax="true"
+			  data-ajax-update="#product-records"
+			  data-ajax-loading="#loader"
+			  id="f">
+			<div class="search-filter-section">
+				<div class="search-section">
+					<div>Search:</div>
+					@Html.TextBox("product", "",
+											new { type = "search", data_trim = "", @class = "form-control" })
+				</div>
+				<div class="filter-section">
+					<div>
+						<div>Filter By Status:</div>
+						@Html.DropDownList("status", (SelectList)ViewBag.StatusList, "-- Select Status --", new { @class = "form-control" })
+					</div>
+					<div>
+						<div>Filter By Category:</div>
+						@Html.DropDownList("category", (SelectList)ViewBag.CategoryList, "-- Select Category --", new { @class = "form-control" })
+					</div>
+				</div>
+				<div class="button-section">
+					<button class="gradient-button">Search</button>
+					<button type="reset">Reset</button>
+					<img src="/images/Icon/loader.gif" id="loader" style="display: none">
+				</div>
+			</div>
+		</form>
+
+		<div id="product-records">
+			<partial name="_ProductManagement">
+		</div>
+	</div>
+</div>
+
+@section foot {
+	<script src="/js/productManagement.js" asp-append-version="true"></script>
+}

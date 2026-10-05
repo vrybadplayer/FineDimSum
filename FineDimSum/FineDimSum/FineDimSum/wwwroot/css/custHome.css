@@ -1,0 +1,334 @@
+﻿.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.description {
+    color: #878787;
+}
+
+.underline {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 100%; /* adjust based on your need */
+}
+
+.gradient-button {
+    background: linear-gradient(135deg, #ff914d, #ffde59); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.red-button {
+    background: #ff3131;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+}
+
+.form-control:focus {
+    border-color: #ffde59;
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+}
+
+/* Change border color for radio buttons on focus */
+.form-check-input:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for select dropdown on focus */
+.form-select:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+/* Change border color for checkbox on focus */
+.form-check-input[type="checkbox"]:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 127, 80, 0.25);
+    border-color: #ffde59; /* Border color */
+}
+
+table, th, td {
+    border: none !important;
+}
+
+.back-btn {
+    background: #c7c7c7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s;
+}
+
+.back-btn:hover {
+    background: #939496;
+}
+
+/* Sidebar container */
+.sidebar {
+    width: 200px;
+    height: 300px; /* Fixed height */
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* List container for scrolling */
+.list-container {
+    height: calc(100% - 60px);
+    width: 100%;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar styles */
+.list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 4px;
+}
+
+    .list-container::-webkit-scrollbar-thumb:hover {
+        background-color: #999;
+    }
+
+.list-container::-webkit-scrollbar-track {
+    background-color: #f8f8f8;
+    border-radius: 4px;
+}
+
+/* Category list */
+#category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Category items */
+.category-item {
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.category-item:hover {
+    background-color: #f0f0f0;
+}
+
+.category-item.active {
+    background: linear-gradient(135deg, #ff914d, #ffde59);
+    color: white;
+}
+
+/* Arrow buttons */
+.arrow {
+    width: 100%;
+    height: 30px;
+    background-color: #f8f8f8;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.arrow:hover {
+    background-color: #ddd;
+}
+
+.arrow:active {
+    background-color: #bbb;
+}
+
+.all-section {
+    display: flex;
+    gap: 4rem;
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.search-filter-section > form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 18px;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.filter-btn > img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.filter-btn {
+    background-color: rgb(28, 25, 22, 0.50);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.button-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.record-no-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.record-no-section a {
+    text-decoration: none;
+}
+
+.filter-dropdown {
+    background-color: white;
+    display: none;
+    border: 2px solid #c7c7c7;
+    border-radius: 5px;
+    position: absolute;
+    top: 2.5rem;
+    right: 0rem;
+    z-index: 5;
+    padding: 20px;
+    flex-direction: column;
+    gap: 2rem;
+    width: 300px;
+}
+
+.price-filter {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-input {
+    display: flex;
+}
+
+.sort-filter {
+    display: flex;
+}
+
+.dir-filter {
+    display: flex;
+    gap: 2rem;
+}
+
+.dir-filter a {
+    text-decoration: none;
+    border: 1px solid #c7c7c7;
+    padding: 5px 10px;
+    color: white;
+    background-color: #c7c7c7;
+    border-radius: 5px;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.product-item:hover {
+    box-shadow: 0 0 10px #939496;
+}
+
+.product-item > img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.product-item > div {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.all-container {
+    display: flex;
+    justify-content: center;
+}
+
+.all-item {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+.item-name {
+    color: black;
+    font-weight: bold;
+}
+
+.item-price {
+    color: #878787;
+    font-weight: bold;
+}

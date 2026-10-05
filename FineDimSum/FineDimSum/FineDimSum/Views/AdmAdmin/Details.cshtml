@@ -1,0 +1,107 @@
+﻿@model FineDimSum.Models.DetailsVM
+@section head {
+    <link rel="stylesheet" href="/css/member.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Admin Details";
+}
+
+<div class="center">
+<div class=" container mt-5">
+
+        <h2>Admin Details</h2>
+
+    <div>
+        <p>
+            
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+            <img src="~/images/Profile/@Model.Image" alt="Profile Picture" class="profile-image" />
+            }
+            else
+            {
+                <span>No picture available</span>
+            }
+                @if (Model.IsEditable)
+                {
+                    <form method="post" asp-action="ChangeProfilePicture" asp-controller="AdmAdmin" enctype="multipart/form-data" class="mt-3">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <div class="mb-3">
+                            <label class="form-label">Upload New Profile Picture:</label>
+                            <input type="file" name="ProfilePicture" class="form-control" accept=".jpg, .jpeg, .png" />
+                        </div>
+                        <button type="submit" class="gradient-button mt-2">Change Picture</button>
+                    </form>
+                }
+        </p>
+    <!-- Username -->
+    <form method="post" asp-action="SaveFieldChanges" asp-controller="AdmAdmin">
+        <div class="mb-3">
+            <label class="form-label">Username:</label>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="FieldName" value="Username" />
+            <input type="text" name="FieldValue" class="form-control" value="@Model.Username"
+            @(Model.IsEditable ? "" : "readonly") />
+            @if (Model.IsEditable)
+            {
+                <button type="submit" class="gradient-button mt-2">Save Changes</button>
+            }
+        </div>
+    </form>
+
+    <!-- Email -->
+    <form method="post" asp-action="SaveFieldChanges" asp-controller="AdmAdmin">
+        <div class="mb-3">
+            <label class="form-label">Email:</label>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="FieldName" value="Email" />
+            <input type="email" name="FieldValue" class="form-control" value="@Model.Email"
+            @(Model.IsEditable ? "" : "readonly") />
+            @if (Model.IsEditable)
+            {
+                <button type="submit" class="gradient-button mt-2">Save Changes</button>
+            }
+        </div>
+    </form>
+
+
+    <!-- Role -->
+    <form method="post" asp-action="SaveFieldChanges" asp-controller="AdmAdmin">
+        <div class="mb-3">
+            <label class="form-label">Role:</label>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="text" class="form-control" value="@Model.Role" readonly />
+            
+        </div>
+    </form>
+
+    <!-- Status -->
+    <form method="post" asp-action="SaveFieldChanges" asp-controller="AdmAdmin">
+        <div class="mb-3">
+            <label class="form-label">Status:</label>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="FieldName" value="Status" />
+            @if (Model.IsEditable)
+            {
+                @Html.DropDownList(
+                         "FieldValue",
+                         new SelectList(new[] { "Active", "Inactive", "Terminated" }, Model.Status),
+                         htmlAttributes: new { @class = "form-select" }
+                         )
+                <button type="submit" class="gradient-button mt-2">Save Changes</button>
+            }
+            else
+            {
+                <input type="text" class="form-control" value="@Model.Status" readonly />
+            }
+        </div>
+    </form>
+</div>
+
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Back to Admin List</a>
+</div>
+</div>
+</div>

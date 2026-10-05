@@ -1,0 +1,101 @@
+﻿﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<dynamic>
+
+@{
+    ViewBag.Title = "Fine Dim Sum | Home";
+}
+
+@section head {
+    <link rel="stylesheet" href="/css/custHome.css" asp-append-version="true" />
+}
+
+<div class="container mb-5">
+    <div class="header">
+        <div class="title">@ViewBag.Category</div>
+        <div class="description">@ViewBag.CategoryDescription</div>
+    </div>
+</div>
+
+<div class="container all-container">
+    <div class="all-section">
+        <div class="sidebar">
+            <button class="arrow" onclick="scrollSidebar('up')">▲</button>
+            <div class="list-container">
+                <ul id="category-list">
+                    <form data-ajax="true"
+                          data-ajax-update="#target"
+                          data-ajax-loading="#loader"
+                          id="categoryForm">
+                    <li class="category-item" onclick="submitCategoryForm('All')">
+                            All
+                    </li>
+                        @foreach (var category in ViewBag.CategoryList as List<string>)
+                        {
+                            <li class="category-item" onclick="submitCategoryForm('@category')">
+                                @category
+                            </li>
+                        }
+                        <input type="hidden" id="selectedCategoryInput" name="category" value="" />
+                    </form>
+                </ul>
+            </div>
+            <button class="arrow" onclick="scrollSidebar('down')">▼</button>
+        </div>
+        <div class="info-section">
+            <div>
+                <div class="search-filter-section">
+                    <form data-ajax="true"
+                          data-ajax-update="#target"
+                          data-ajax-loading="#loader"
+                          id="searchForm">
+                        <div class="search-section">
+                            @Html.TextBox("search", "",
+                                     new { type = "search", data_trim = "", @class = "form-control" })
+                            <button class="gradient-button">Search</button>
+                        </div>
+                        <div class="filter-section">
+                            <div class="filter-btn">
+                                <img src="/images/Icon/filter.png" />
+                            </div>
+                            <div class="filter-dropdown">
+                                <div class="price-filter">
+                                    <div>Price</div>
+                                    <div class="price-input">
+                                        @Html.TextBox("minPrice", "",
+                                                 new { placeholder = "Min", step = "0.01", type = "number", data_trim = "", @class = "form-control" })
+                                        @Html.TextBox("maxPrice", "",
+                                                 new { placeholder = "Max", step = "0.01", type = "number", data_trim = "", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="sort-filter">
+                                    <div>Sort By: </div>
+                                    @Html.DropDownList("sort", (SelectList)ViewBag.SortList, "-- Select --", new { @class = "form-control" })
+                                </div>
+                                <div class="dir-filter">
+                                    <a data-ajax="true"
+                                       data-ajax-update="#target"
+                                       data-ajax-loading="#loader"
+                                       href="?product=@ViewBag.Name&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&category=@ViewBag.Category&dir=asc">Ascending</a>
+                                    <a data-ajax="true"
+                                       data-ajax-update="#target"
+                                       data-ajax-loading="#loader"
+                                       href="?product=@ViewBag.Name&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&category=@ViewBag.Category&dir=des">Descending</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div id="target">
+                <partial name="_IndexA">
+            </div>
+            
+        </div>
+    </div> 
+</div>
+
+@section foot {
+    <script src="/js/custHome.js" asp-append-version="true"></script>
+}

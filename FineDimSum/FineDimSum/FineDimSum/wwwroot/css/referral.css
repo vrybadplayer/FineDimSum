@@ -1,0 +1,89 @@
+﻿form, h1.header, h2 {
+    display: flex;
+    justify-content: center;
+}
+
+h1.header {
+    font-size: 80px;
+    padding: 25px 0px 20px 0px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 1000px;
+}
+
+label {
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-content:center;
+    align-items: center;
+
+}
+
+.buttons {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    height: 60px;
+    width: 350px;
+    background: linear-gradient(135deg, #ff914d, #ffde59);
+    transition: 0.3s ease-in-out;
+}
+
+    button:hover {
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.4),0 7px 10px 0 rgba(0,0,0,0.3);
+    }
+
+input {
+    border-radius: 30px;
+    border: solid 1px;
+    width: 400px;
+    height: 50px;
+}
+
+button#html5-qrcode-button-camera-permission {
+    margin: 10px 0px 20px 0px;
+}
+
+button#html5-qrcode-button-camera-stop{
+    margin: 25px 0px 15px 0px;
+}
+
+button#html5-qrcode-button-camera-start {
+    width: 200px;
+    height: 50px;
+    margin: 20px;
+}
+
+button#html5-qrcode-button-file-selection.html5-qrcode-element {
+    background: none;
+}
+
+button#html5-qrcode-button-file-selection.html5-qrcode-element:hover {
+    box-shadow: none;
+}
+
+div#my-qr-reader {
+    width:500px;
+}

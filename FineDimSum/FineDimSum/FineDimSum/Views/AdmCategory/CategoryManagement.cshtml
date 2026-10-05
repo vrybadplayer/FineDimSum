@@ -1,0 +1,56 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Category>
+
+@{
+    ViewBag.Title = "Fine Dim Sum | Category Management";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/categoryManagement.css" asp-append-version="true" />
+}
+
+<div class="container mb-5">
+	<div class="header">
+		<div class="title">CATEGORY MANAGEMENT</div>
+		<div class="info-num">(@ViewBag.NumOfCategories) Record(s)</div>
+	</div>
+	<div class="underline"></div>
+</div>
+
+
+<div class="content-wrapper">
+	<div class="container mt-5 d-flex flex-column gap-4">
+		<!-- Search & Filter -->
+		<form data-ajax="true"
+			  data-ajax-update="#category-records"
+			  data-ajax-loading="#loader"
+			  id="f">
+			<div class="search-filter-section">
+				<div class="search-section">
+					<div>Search:</div>
+					@Html.TextBox("category", "",
+										new { type = "search", data_trim = "", @class = "form-control"})
+				</div>
+				<div class="filter-section">
+					<div>Filter By Status:</div>
+					@Html.DropDownList("status", (SelectList)ViewBag.StatusList, "-- Select Status --", new { @class = "form-control" })
+				
+				</div>
+				<div class="button-section">
+					<button class="gradient-button">Search</button>
+					<button type="reset">Reset</button>
+					<img src="/images/Icon/loader.gif" id="loader" style="display: none">
+				</div>
+			</div>
+		</form>
+
+		<div id="category-records">
+			<partial name="_CategoryManagement">
+		</div>
+	</div>
+</div>
+
+@section foot {
+	<script src="/js/categoryManagement.js" asp-append-version="true"></script>
+}

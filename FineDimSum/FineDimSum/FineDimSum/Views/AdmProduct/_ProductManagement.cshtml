@@ -1,0 +1,135 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<dynamic>
+
+@{
+    string[] fields = ["Product Id", "Image", "Product Name", "Category", "Min. Stock Level", "Stock Quantity", "Status"];
+}
+
+@Html.Hidden("sort", "", new { form = "f" })
+@Html.Hidden("dir", "", new { form = "f" })
+
+<form method="post" action="/AdmProduct/DeleteMany" id="deleteForm" onsubmit="return confirm('Are you sure to delete the selected products?\n(Warning: All OrderItem (Preparing) in Active Order will be deleted.)')"></form>
+<form method="post" action="/AdmProduct/Restock" id="restockForm" onsubmit="return confirm('Are you sure to restock all products?')"></form>
+
+<div class="record-no-section">
+    <div>
+        @Model.Count() of @Model.TotalItemCount record(s) |
+        Page @Model.PageNumber of @Model.PageCount
+    </div>
+    <div>
+        <button form="restockForm" class="">Restock</button>
+        <a class="gradient-button" href="/AdmProduct/Create">+ Add New Product</a>
+    </div>
+</div>
+
+<div>
+    <button data-check="ids">Check All</button>
+    <button data-uncheck="ids">Uncheck All</button>
+    <button form="deleteForm" class="red-button">Delete Checked</button>
+</div>
+
+<table class="table table-hover table-light mt-3">
+    <thead class="table-head">
+        <tr>
+            <th></th>
+            @foreach (var f in fields)
+            {
+                if (f.Equals("Image"))
+                {
+                    <th>@f</th>
+                    continue;
+                }
+
+                string d = "asc";
+                string c = "";
+
+                if (f == ViewBag.Sort)
+                {
+                    d = ViewBag.Dir == "des" ? "asc" : "des";
+                    c = ViewBag.Dir;
+                }
+
+                <th>
+                    <a data-ajax="true"
+                    data-ajax-update="#product-records"
+                    data-ajax-loading="#loader"
+                       href="?product=@ViewBag.Name&status=@ViewBag.Status&category=@ViewBag.Category&sort=@f&dir=@d" class="@c">@f</a>
+                </th>
+            }
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var p in Model)
+    {
+        <tr data-checkable>
+            <td>
+                <input type="checkbox" class="form-check-input" name="ids" form="deleteForm" value="@p.Id" />
+            </td>
+            <td>@p.Id</td>
+            <td>
+                <img class="product-img" src="/images/AdmProduct/Product/@p.Image" alt="@p.Name" />
+            </td>
+            <td>@p.Name</td>
+            <td>@p.Category</td>
+            <td>
+                @foreach (var pvo in p.ProductVariationOptions)
+                {
+                    <div><b>@pvo.Name:</b> @pvo.MinStockLevel @(pvo.Status == "Inactive" ? "(Inactive)" : "")</div>
+                }
+            </td>
+            <td>
+                @foreach (var pvo in p.ProductVariationOptions)
+                {
+                    <div class="@(pvo.StockQuantity < pvo.MinStockLevel ? "status-terminated" : "")"><b>@pvo.Name:</b> @pvo.StockQuantity @(pvo.Status == "Inactive" ? "(Inactive)" : "")</div>
+                }
+            </td>
+            @{
+                var statusColors = new Dictionary<string, string>
+                {
+                    { "Active", "status-active" },
+                    { "Inactive", "status-inactive" },
+                    { "Terminated", "status-terminated" },
+                    { "", "" }
+                };
+
+                ViewBag.StatusColor = statusColors.ContainsKey(p.Status) ? statusColors[p.Status] : "";
+            }
+            <td class="@ViewBag.StatusColor">@p.Status</td>
+            <td class="action-button-section">
+                <div>
+                    <button data-get="/AdmProduct/Update?id=@p.Id" class="gradient-button edit-btn">
+                        Edit
+                    </button>
+                    <button data-id="@p.Id" data-post-delete="/AdmProduct/Delete/@p.Id" class="red-button delete-btn">
+                        Delete
+                    </button>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@{
+    var options = PagedListRenderOptions.ClassicPlusFirstAndLast;
+    options.LinkToFirstPageFormat = "First";
+    options.LinkToLastPageFormat = "Last";
+    options.LinkToPreviousPageFormat = "Previous";
+    options.LinkToNextPageFormat = "Next";
+
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "get",
+        UpdateTargetId = "product-records",
+        LoadingElementId = "#loader",
+    };
+}
+
+@Html.PagedListPager(
+    Model,
+            p => $"?product={ViewBag.Name}&status={ViewBag.Status}&category={ViewBag.Category}&sort={ViewBag.Sort}&dir={ViewBag.Dir}&page={p}",
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(options, ajaxOptions)
+)

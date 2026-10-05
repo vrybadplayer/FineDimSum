@@ -1,0 +1,136 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<dynamic>
+
+@{
+	ViewBag.Title = "Fine Dim Sum | Admin Dashboard";
+}
+
+@section head {
+	<link rel="stylesheet" href="/css/adminDashboard.css" asp-append-version="true" />
+}
+
+<div class="container mb-5">
+	<div class="header">
+		<div class="title">DASHBOARD</div>
+	</div>
+</div>
+
+<div class="analytics-section">
+	<div class="basic-analytics">
+		<div>
+			<div>
+				<div class="analytics-title">Members Joined</div>
+				<div class="analytics-time">Last Month</div>
+			</div>
+			<div>
+				<div class="analytics-value">@ViewBag.MembersJoinedLastMonth</div>
+				<div class="analytics-unit">Members</div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div class="analytics-title">Members Joined</div>
+				<div class="analytics-time">Last Year</div>
+			</div>
+			<div>
+				<div class="analytics-value">@ViewBag.MembersJoinedLastYear</div>
+				<div class="analytics-unit">Members</div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div class="analytics-title">Sales</div>
+				<div class="analytics-time">Last Week</div>
+			</div>
+			<div>
+				<div class="analytics-unit">RM</div>
+				<div class="analytics-value">@ViewBag.LastWeekSales</div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div class="analytics-title">Total Sales</div>
+				<div class="analytics-time">Last Year</div>
+			</div>
+			<div>
+				<div class="analytics-unit">RM</div>
+				<div class="analytics-value">@ViewBag.LastYearSales</div>
+			</div>
+		</div>
+	</div>
+	<div class="top-analytics">
+		<div class="analytics-view">
+			<div class="analytics-title">Best-Selling Items</div>
+			<div class="analytics-time">Last Week</div>
+		</div>
+		<div class="rectangle-pic-container">
+			<img src="/images/AdmProduct/Product/@ViewBag.BestSellingItem.Image" alt="Product Image" />
+			<div>@ViewBag.BestSellingItem.Name (Product Id: @ViewBag.BestSellingItem.Id)</div>
+		</div>
+		<div class="analytics-view">
+			<div class="analytics-unit">Quantity Sold</div>
+			<div class="analytics-value-small">@ViewBag.BestSellingItem.QuantitySold</div>
+		</div>
+	</div>
+	<div class="top-analytics">
+		<div class="analytics-view">
+			<div class="analytics-title">Top Member Purchase</div>
+			<div class="analytics-time">Last Month</div>
+		</div>
+		<div class="round-pic-container">
+			<div class="picture-container">
+				<img src="/images/Icon/member.png" alt="Profile Image" />
+			</div>
+			<div>@ViewBag.TopMemberPurchase.Name (Member Id: @ViewBag.TopMemberPurchase.Id)</div>
+		</div>
+		<div class="analytics-view">
+			<div class="analytics-unit">Total Purchase</div>
+			<div class="analytics-value-small">RM @ViewBag.TopMemberPurchase.TotalPurchase.ToString("N2")</div>
+		</div>
+	</div>
+</div>
+
+<div class="product-sales-section">
+	<form data-ajax="true"
+		  data-ajax-update="#sales-records"
+		  data-ajax-loading="#loader"
+		  id="f">
+		<div class="section-title">Product Sales</div>
+		<div class="all-search-section">
+			<div>
+				<table class="search-table">
+					<tr>
+						<td>
+							<div class="search-title">Search:</div>
+							@Html.TextBox("product", "", new { type = "search", data_trim = "", @class = "form-control" })
+						</td>
+						<td>
+							<div class="search-title">Filter By Category:</div>
+							@Html.DropDownList("category", (SelectList)ViewBag.CategoryList, "-- Select Category --", new { @class = "form-control" })
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="search-title">Start Date:</div>
+							@Html.TextBox("startDate", "", new { type = "date", @class = "form-control" })
+						</td>
+						<td>
+							<div class="search-title">End Date:</div>
+							@Html.TextBox("endDate", "", new { type = "date", @class = "form-control" })
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="button-section">
+				<button class="gradient-button">Search</button>
+				<button type="reset">Reset</button>
+				<img src="/images/Icon/loader.gif" id="loader" style="display: none">
+			</div>
+		</div>
+		
+	</form>
+	<div id="sales-records">
+		<partial name="_Dashboard">
+	</div>
+</div>
